@@ -1,0 +1,16 @@
+# plaintext
+out
+
+# typescript
+lib
+
+# npm
+node_modules
+
+# 0x
+*.0x/
+
+# emacs
+*~
+*#*
+.#*
