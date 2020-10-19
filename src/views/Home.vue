@@ -7,6 +7,8 @@
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator"
   import HelloWorld from "@/components/HelloWorld.vue"
+  import * as cicada from "@xieyuheng/cicada"
+  console.log(cicada)
 
   @Component({
     components: {
