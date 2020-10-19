@@ -10,18 +10,16 @@
   import { Component, Vue } from "vue-property-decorator"
   import { pt, lang3, Trace } from "@xieyuheng/cicada"
 
-  const example = `
-@datatype List : (Type) -> Type {
-  null: (T: Type) -> List(T)
-  cons: (T: Type) -> (head: T) -> (tail: List(T)) -> List(T)
+  const example = `\
+@datatype Pair : (Type) -> (Type) -> Type {
+  pair : (A: Type) -> (B: Type) -> (first: A) -> (second: B) -> Pair(A)(B)
 }
 
-@show List
-@show List.null
-@show List.cons
-@show List.null(String)
-@show List.cons(String)("abc")(List.null(String))
-  `
+greeting : (String) -> Pair(String)(String)
+greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
+
+@show greeting("Raymond")
+`
 
   function run(text: string): string {
     try {
