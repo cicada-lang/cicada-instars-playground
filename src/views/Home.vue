@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <HelloWorld msg="Welcome" />
+    <pre>{{ output }}</pre>
   </div>
 </template>
 
@@ -24,7 +25,7 @@
 
   const tops = lang3.frontend.parse_tops(text)
   const mod = lang3.Mod.init()
-  const output = lang3.Top.run(mod, tops)
+  const output: string = lang3.Top.run(mod, tops)
 
   @Component({
     components: {
@@ -32,5 +33,6 @@
     },
   })
   export default class Home extends Vue {
+    output = output
   }
 </script>
