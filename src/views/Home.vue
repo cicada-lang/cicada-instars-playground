@@ -24,12 +24,13 @@
 
   const tops = lang3.frontend.parse_tops(text)
   const mod = lang3.Mod.init()
-  lang3.Top.run(mod, tops)
+  const output = lang3.Top.run(mod, tops)
 
   @Component({
     components: {
       HelloWorld,
     },
   })
-  export default class Home extends Vue {}
+  export default class Home extends Vue {
+  }
 </script>
