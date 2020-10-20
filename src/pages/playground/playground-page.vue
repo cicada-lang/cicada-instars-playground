@@ -35,6 +35,7 @@
     }
 
     select(event: any): void {
+      this.input = Playground.Lang.welcome(this.lang)
       this.$router.replace({
         query: {
           ...this.$route.query,
