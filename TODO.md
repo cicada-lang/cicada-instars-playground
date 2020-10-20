@@ -1,3 +1,4 @@
+- style select element
 - deploy on vercel
 - second level drop down menu examples selection
   - use predefined `examples`

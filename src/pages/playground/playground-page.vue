@@ -1,7 +1,9 @@
 <template>
   <div class="playground">
     <div class="playground-header">
-      <button class="playground-header-run" v-on:click="update">RUN ⯈</button>
+      <button class="playground-header-run" v-on:click="run">
+        {{ run_icon }}
+      </button>
       <select
         class="playground-header-select"
         v-model="lang"
@@ -29,8 +31,9 @@
     langs = Playground.Lang.langs
     input = Playground.Lang.welcome(this.lang)
     output = ""
+    run_icon = "RUN |>"
 
-    update(): void {
+    run(): void {
       this.output = Playground.Lang.runner(this.lang)(this.input)
     }
 
