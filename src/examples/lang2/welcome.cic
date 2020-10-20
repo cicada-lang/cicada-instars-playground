@@ -12,4 +12,4 @@ _ : Equal(Pair(String, String),
   cons("ratatouille", "baguette"))
 _ = same
 
-@show two
+@show _

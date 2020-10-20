@@ -1,15 +1,13 @@
-_ : String
-_ = "ratatouille"
+one : Nat
+one = add1(zero)
 
-_ : Pair(String, String)
-_ = cons("ratatouille", "baguette")
+two : Nat
+two = add1(one)
 
-_ : Equal(String, "ratatouille", "ratatouille")
-_ = same
+id : (Nat) -> Nat
+id = (x) => x
 
-_ : Equal(Pair(String, String),
-  cons("ratatouille", "baguette"),
-  cons("ratatouille", "baguette"))
-_ = same
+_ : (Nat) -> (Nat) -> Nat
+_ = (_) => (_) => id(id(id(id(two))))
 
-@show two
+@show _

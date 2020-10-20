@@ -1,6 +1,7 @@
 <template>
   <div class="playground">
     <div class="playground-header">
+      <span class="playground-status">{{ lang }}</span>
       <button v-on:click="update">RUN ⯈</button>
       <button v-on:click="p1">P1</button>
     </div>
@@ -16,13 +17,12 @@
 <script lang="ts">
   import * as Playground from "../playground"
   import { Component, Vue } from "vue-property-decorator"
-  const welcome = require("@/examples/lang3/welcome.cic")
 
   @Component({ name: "Playground" })
   export default class extends Vue {
-    input = welcome
-    output = ""
     lang = Playground.Lang.init_lang(this.$route.query.lang)
+    input = Playground.Lang.welcome(this.lang)
+    output = ""
 
     update(): void {
       this.output = Playground.Lang.runner(this.lang)(this.input)
@@ -41,6 +41,14 @@
 
   .playground-header {
     padding: 15px 0;
+  }
+
+  .playground-header, button {
+    margin: 0 3px;
+  }
+
+  .playground-status {
+    margin: 0 3px;
   }
 
   .playground-footer {

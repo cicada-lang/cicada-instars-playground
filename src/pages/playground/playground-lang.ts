@@ -23,3 +23,7 @@ export function runner(lang: Lang): (text: string) => string {
       return Playground.run_lang3
   }
 }
+
+export function welcome(lang: Lang): string {
+  return require(`@/examples/${lang}/welcome.cic`)
+}

@@ -1,2 +1,3 @@
+- drop down menu for lang selection
 - `Playground` use predefined `example` from url
 - be able to output html
