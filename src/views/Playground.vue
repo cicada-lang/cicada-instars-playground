@@ -1,12 +1,11 @@
 <template>
   <div class="playground">
     <div class="playground-header">
-      <button @click="update">RUN</button>
+      <button @click="update">RUN ⯈</button>
+      <!-- <button>...</button> -->
     </div>
-    <div class="playground-body">
-      <textarea class="playground-editor" v-model:value="input"></textarea>
-      <pre class="playground-output">{{ output }}</pre>
-    </div>
+    <textarea class="playground-editor" v-model:value="input"></textarea>
+    <pre class="playground-output" v-html="output"></pre>
   </div>
 </template>
 
@@ -59,13 +58,16 @@ greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
 <style scoped>
   .playground {
     display: grid;
-    grid-template-rows: 10fr 100fr;
-    height: 100vh;
-    width: 100vw;
+    grid-template-rows: 10vh 70vh auto;
+    overflow-y: auto;
+    margin: 0 16px;
+  }
+  .playground-header {
+    padding: 15px 0;
   }
 
-  .playground-body {
-    display: grid;
-    grid-template-rows: 70fr 30fr;
+  .playground-output {
+    background-color: #f9ffff;
+    font-size: 0.8em;
   }
 </style>
