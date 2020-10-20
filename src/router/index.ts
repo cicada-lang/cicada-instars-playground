@@ -1,6 +1,6 @@
 import Vue from "vue"
 import VueRouter, { RouteConfig } from "vue-router"
-import Playground from "../views/Playground.vue"
+import Playground from "../views/playground.vue"
 
 Vue.use(VueRouter)
 
