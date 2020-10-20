@@ -1,6 +1,7 @@
-- style select element -- `background-image`
 - second level drop down menu examples selection
   - use predefined `examples`
   - also update url
   - use cicada's tests
+- share button
+  - vercel serverless + free mongodb
 - be able to output html
