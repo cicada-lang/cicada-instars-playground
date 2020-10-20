@@ -1,0 +1,15 @@
+_ : String
+_ = "ratatouille"
+
+_ : Pair(String, String)
+_ = cons("ratatouille", "baguette")
+
+_ : Equal(String, "ratatouille", "ratatouille")
+_ = same
+
+_ : Equal(Pair(String, String),
+  cons("ratatouille", "baguette"),
+  cons("ratatouille", "baguette"))
+_ = same
+
+@show two

@@ -22,13 +22,14 @@
   export default class extends Vue {
     input = welcome
     output = ""
+    lang = Playground.Lang.init_lang(this.$route.query.lang)
 
     update(): void {
-      this.output = Playground.run(this.input)
+      this.output = Playground.Lang.runner(this.lang)(this.input)
     }
 
     p1(): void {
-      console.log(this.$route)
+      console.log(this.lang)
     }
   }
 </script>
