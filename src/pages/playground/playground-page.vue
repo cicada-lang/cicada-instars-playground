@@ -32,8 +32,7 @@
   .playground {
     display: grid;
     grid-template-rows: 10vh 70vh auto;
-    overflow-y: auto;
-    margin: 0 16px;
+    padding: 0 16px;
   }
 
   .playground-header {
