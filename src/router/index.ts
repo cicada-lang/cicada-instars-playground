@@ -1,13 +1,13 @@
 import Vue from "vue"
 import VueRouter, { RouteConfig } from "vue-router"
-import Playground from "../views/playground.vue"
+import * as Playground from "../pages/playground"
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    component: Playground,
+    component: Playground.Page,
   },
 ]
 
