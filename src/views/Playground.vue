@@ -12,17 +12,7 @@
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator"
   import { pt, lang3, Trace } from "@xieyuheng/cicada"
-
-  const example = `\
-@datatype Pair : (Type) -> (Type) -> Type {
-  pair : (A: Type) -> (B: Type) -> (first: A) -> (second: B) -> Pair(A)(B)
-}
-
-greeting : (String) -> Pair(String)(String)
-greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
-
-@show greeting("Raymond")
-`
+  const welcome = require("@/examples/lang3/welcome.cic")
 
   function run(text: string): string {
     try {
@@ -46,7 +36,7 @@ greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
 
   @Component({ name: "Playground" })
   export default class Playground extends Vue {
-    input = example
+    input = welcome
     output = ""
 
     update(): void {
