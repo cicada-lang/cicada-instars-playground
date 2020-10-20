@@ -2,6 +2,7 @@
   <div class="playground">
     <div class="playground-header">
       <button v-on:click="update">RUN ⯈</button>
+      <button v-on:click="p1">P1</button>
     </div>
     <textarea class="playground-editor" v-model:value="input"> </textarea>
     <div v-if="output">
@@ -24,6 +25,10 @@
 
     update(): void {
       this.output = Playground.run(this.input)
+    }
+
+    p1(): void {
+      console.log(this.$route)
     }
   }
 </script>
