@@ -1,8 +1,12 @@
 <template>
   <div class="playground">
-    <textarea v-model:value="input"></textarea>
-    <button @click="update">RUN</button>
-    <pre>{{ output }}</pre>
+    <div class="playground-header">
+      <button @click="update">RUN</button>
+    </div>
+    <div class="playground-body">
+      <textarea class="playground-editor" v-model:value="input"></textarea>
+      <pre class="playground-output">{{ output }}</pre>
+    </div>
   </div>
 </template>
 
@@ -41,8 +45,8 @@ greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
     }
   }
 
-  @Component
-  export default class Home extends Vue {
+  @Component({ name: "Playground" })
+  export default class Playground extends Vue {
     input = example
     output = ""
 
@@ -55,7 +59,14 @@ greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
 <style scoped>
   .playground {
     display: grid;
-    grid-template-columns: 50fr 7fr 50fr;
+    grid-template-rows: 10fr 90fr;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .playground-body {
+    display: grid;
+    grid-template-rows: 70fr 30fr;
     height: 100vh;
     width: 100vw;
   }

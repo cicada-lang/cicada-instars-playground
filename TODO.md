@@ -1,5 +1,3 @@
-- refactor `Playground` from `Home`
-- css for `Playground` component
 - `globel.css` -- to clear default browser css
 - `Playground` use predefined `example` from url
 - `Playground` be able to use different langs
