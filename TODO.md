@@ -1,3 +1,5 @@
-- drop down menu for lang selection
-- `Playground` use predefined `example` from url
+- second level drop down menu examples selection
+  - use predefined `examples`
+  - also update url
+  - use cicada's tests
 - be able to output html

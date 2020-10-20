@@ -2,12 +2,12 @@ import * as Playground from "../playground"
 
 export type Lang = "lang0" | "lang1" | "lang2" | "lang3"
 
-export const langs = new Set(["lang0", "lang1", "lang2", "lang3"])
+export const langs = ["lang0", "lang1", "lang2", "lang3"]
 
 export const default_lang = "lang3" as const
 
 export function init_lang(lang: any): Lang {
-  if (typeof lang === "string" && langs.has(lang)) return lang as Lang
+  if (typeof lang === "string" && langs.includes(lang)) return lang as Lang
   else return default_lang
 }
 
