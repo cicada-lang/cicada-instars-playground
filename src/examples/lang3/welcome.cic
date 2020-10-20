@@ -1,8 +1,11 @@
-@datatype Pair : (Type) -> (Type) -> Type {
-  pair : (A: Type) -> (B: Type) -> (first: A) -> (second: B) -> Pair(A)(B)
+@datatype Sigma : (A : Type) -> (B : (A) -> Type) -> Type {
+  pair : (A : Type) -> (B : (A) -> Type) -> (fst : A) -> (snd : B(fst)) -> Sigma(A)(B)
 }
 
-greeting : (String) -> Pair(String)(String)
-greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
+constString : (String) -> Type
+constString = (s) => String
+
+greeting : (String) -> Sigma(String)(constString)
+greeting = (name) => Sigma.pair(String)(constString)("Welcome")(name)
 
 @show greeting("Raymond")
