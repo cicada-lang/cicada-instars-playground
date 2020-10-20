@@ -59,7 +59,7 @@ greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
 <style scoped>
   .playground {
     display: grid;
-    grid-template-rows: 10fr 90fr;
+    grid-template-rows: 10fr 100fr;
     height: 100vh;
     width: 100vw;
   }
@@ -67,7 +67,5 @@ greeting = (name) => Pair.pair(String)(String)("Welcome")(name)
   .playground-body {
     display: grid;
     grid-template-rows: 70fr 30fr;
-    height: 100vh;
-    width: 100vw;
   }
 </style>
