@@ -31,7 +31,7 @@
     langs = Playground.Lang.langs
     input = Playground.Lang.welcome(this.lang)
     output = ""
-    run_icon = "RUN |>"
+    run_icon = "RUN >"
 
     run(): void {
       this.output = Playground.Lang.runner(this.lang)(this.input)
