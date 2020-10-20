@@ -1,5 +1,4 @@
 - style select element -- `background-image`
-- deploy on vercel
 - second level drop down menu examples selection
   - use predefined `examples`
   - also update url
