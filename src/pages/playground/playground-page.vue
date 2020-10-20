@@ -1,11 +1,14 @@
 <template>
   <div class="playground">
     <div class="playground-header">
-      <button @click="update">RUN ⯈</button>
-      <!-- <button>...</button> -->
+      <button v-on:click="update">RUN ⯈</button>
     </div>
-    <textarea class="playground-editor" v-model:value="input"></textarea>
-    <pre class="playground-output" v-html="output"></pre>
+    <textarea class="playground-editor" v-model:value="input"> </textarea>
+    <div v-if="output">
+      <hr />
+      <pre class="playground-output" v-html="output"></pre>
+    </div>
+    <div class="playground-footer"></div>
   </div>
 </template>
 
@@ -32,12 +35,28 @@
     overflow-y: auto;
     margin: 0 16px;
   }
+
   .playground-header {
     padding: 15px 0;
   }
 
+  .playground-footer {
+    padding: 15px 0;
+  }
+
+  .playground-editor {
+    padding: 2px;
+    border: thin solid;
+    font-size: 1em;
+  }
+
+  hr {
+    margin: 9px 0;
+  }
+
   .playground-output {
-    background-color: #f9ffff;
-    font-size: 0.8em;
+    padding: 2px;
+    border: thin dashed;
+    font-size: 1em;
   }
 </style>
