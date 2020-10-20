@@ -30,8 +30,6 @@
 
 <style scoped>
   .playground {
-    display: grid;
-    grid-template-rows: 10vh 70vh auto;
     padding: 0 16px;
   }
 
@@ -44,9 +42,13 @@
   }
 
   .playground-editor {
+    height: 70vh;
     padding: 2px;
     border: thin solid;
     font-size: 1em;
+    width: 100%;
+    overflow-x: auto;
+    overflow-wrap: normal;
   }
 
   hr {
@@ -57,5 +59,8 @@
     padding: 2px;
     border: thin dashed;
     font-size: 1em;
+    width: 100%;
+    overflow-x: auto;
+    overflow-wrap: normal;
   }
 </style>
