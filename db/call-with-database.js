@@ -6,17 +6,25 @@ const client = new MongoClient(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 })
 
+// NOTE We should not close connection in serverless functions.
+//   And we should use `cached_dbs` instead.
+const cached_dbs = {}
+
 const call_with_database = async (db_name, cb) => {
-  await client.connect()
+  if (cached_dbs[db_name] !== undefined) {
+    console.log(`[call_with_database] [cached] ${db_name}`)
+    return await cb(cached_dbs[db_name])
+  }
+
   try {
-    const result = await cb(client.db(db_name))
-    console.log(`[call_with_database] ${db_name}`)
-    // client.close()
-    return result
+    await client.connect()
+    console.log(`[call_with_database] [new connection] ${db_name}`)
+    const db = client.db(db_name)
+    cached_dbs[db_name] = db
+    return await cb(db)
   } catch (error) {
     console.error(`[call_with_database] [fail] ${db_name}`)
-    console.error(error)
-    // client.close()
+    throw error
   }
 }
 
