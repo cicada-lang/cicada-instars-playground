@@ -69,7 +69,6 @@
     }
 
     async share(): Promise<void> {
-      console.log("[share]")
       const respond = await fetch("api/project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -115,6 +114,11 @@
 
   .playground-header-run {
     background-color: #a8d8b9;
+  }
+
+  .playground-header-share {
+    background-color: #fcfaf2;
+    float: right;
   }
 
   .playground-header-select {
