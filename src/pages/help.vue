@@ -1,7 +1,8 @@
 <template>
-  <div class="about">
-    <div class="about-header"></div>
-    <h2>The Cicada Playground</h2>
+  <div class="help">
+    <div class="help-header"></div>
+    <h1>The Cicada Playground</h1>
+    <h2>About</h2>
     <ul>
       Authors:
       <li>
@@ -19,31 +20,29 @@
         <a href="https://gitlab.com/xieyuheng/cicada">cicada</a>
       </li>
     </ul>
-    <div class="about-footer"></div>
+    <h2>Disclaimer</h2>
+    <p>
+      This Web app is under active design and development, <br />
+      data stored on the server should be considered temporary, <br />
+      thus not be relyed upon.
+    </p>
+    <div class="help-footer"></div>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator"
 
-  @Component({ name: "About" })
+  @Component({ name: "Help" })
   export default class extends Vue {}
 </script>
 
 <style scoped>
-  .about {
-    padding: 0 15px;
+  .help {
+    padding: 15px 17px;
   }
 
   li {
     margin-left: 2em;
-  }
-
-  .about-header {
-    padding: 15px 0;
-  }
-
-  .about-footer {
-    padding: 15px 0;
   }
 </style>

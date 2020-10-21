@@ -10,8 +10,8 @@
         </select>
       </button>
       <!-- MIDDLE -->
-      <button class="playground-header-about">
-        <router-link to="/about">ABOUT?</router-link>
+      <button class="playground-header-help">
+        <router-link to="/help">HELP</router-link>
       </button>
       <button class="playground-header-share" v-on:click="share">
         {{ share_icon }}
@@ -127,7 +127,7 @@
     float: right;
   }
 
-  .playground-header-about {
+  .playground-header-help {
     background-color: #fcfaf2;
     float: right;
   }

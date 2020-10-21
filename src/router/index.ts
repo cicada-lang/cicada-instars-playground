@@ -1,7 +1,7 @@
 import Vue from "vue"
 import VueRouter, { RouteConfig } from "vue-router"
 import * as Playground from "../pages/playground"
-import About from "../pages/about.vue"
+import Help from "../pages/help.vue"
 
 Vue.use(VueRouter)
 
@@ -11,8 +11,8 @@ const routes: Array<RouteConfig> = [
     component: Playground.Page,
   },
   {
-    path: "/about",
-    component: About,
+    path: "/help",
+    component: Help,
   },
 ]
 
