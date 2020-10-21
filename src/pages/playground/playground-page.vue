@@ -71,6 +71,10 @@
     }
 
     async share(): Promise<void> {
+      this.output = ut.aline(`\
+      |You can share your project by this link:
+      |    // generating ...
+      |`)
       const respond = await fetch("api/project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
