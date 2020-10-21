@@ -3,7 +3,7 @@ const process = require("process")
 
 const client = new MongoClient(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // useUnifiedTopology: true,
 })
 
 const call_with_database = async (db_name, cb) => {
