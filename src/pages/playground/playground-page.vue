@@ -80,7 +80,6 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lang: this.lang, main: this.input }),
       })
-      console.log(respond)
       const project_id = await respond.json()
       const link = `${window.location.origin}?project_id=${project_id}`
       this.output = ut.aline(`\
