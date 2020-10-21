@@ -4,18 +4,20 @@
       <button class="playground-header-run" v-on:click="run">
         {{ run_icon }}
       </button>
-      <select
-        class="playground-header-select"
-        v-model="lang"
-        v-on:change="select"
-      >
-        <option v-for="lang in langs" v-bind:value="lang">{{ lang }}</option>
-      </select>
+      <button class="playground-header-select">
+        <select v-model="lang" v-on:change="select">
+          <option v-for="lang in langs" v-bind:value="lang">{{ lang }}</option>
+        </select>
+      </button>
+      <!-- MIDDLE -->
+      <button class="playground-header-about">
+        <router-link to="/about">ABOUT?</router-link>
+      </button>
       <button class="playground-header-share" v-on:click="share">
         {{ share_icon }}
       </button>
     </div>
-    <textarea class="playground-editor" v-model:value="input"> </textarea>
+    <textarea class="playground-editor" v-model:value="input"></textarea>
     <div v-if="output">
       <hr />
       <pre class="playground-output" v-html="output"></pre>
@@ -108,8 +110,8 @@
   }
 
   .playground-header select {
-    padding: 4px 7px;
-    border: thin solid;
+    background-color: #fcfaf2;
+    border: none;
   }
 
   .playground-header-run {
@@ -117,6 +119,11 @@
   }
 
   .playground-header-share {
+    background-color: #fcfaf2;
+    float: right;
+  }
+
+  .playground-header-about {
     background-color: #fcfaf2;
     float: right;
   }

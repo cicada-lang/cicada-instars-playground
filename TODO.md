@@ -1,4 +1,3 @@
-- [web] add about page
 - [server] schema for the model of `api/project`
 - [server] better log
 - [server] error handling in server and api code
