@@ -1,4 +1,4 @@
-- [server] serverless function do not need to close db connection
+- [server] [why?] serverless function do not need to close db connection
 - [web] second level drop down menu examples selection
   - use predefined `examples`
   - also update url
