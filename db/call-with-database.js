@@ -10,7 +10,7 @@ const call_with_database = async (db_name, cb) => {
   await client.connect()
   try {
     const result = await cb(client.db(db_name))
-    console.error(`[call_with_database] ${db_name}`)
+    console.log(`[call_with_database] ${db_name}`)
     // client.close()
     return result
   } catch (error) {
