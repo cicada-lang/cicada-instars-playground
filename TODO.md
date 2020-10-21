@@ -1,3 +1,5 @@
+- model of `api/project`
+- schema for the model of `api/project`
 - share button
 - error handling in server and api code
 - second level drop down menu examples selection

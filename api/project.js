@@ -11,5 +11,5 @@ const get = async (request, response) => {
 }
 
 const post = async (request, response) => {
-  response.json(request.body)
+  response.json(await services.project.create(request.body))
 }

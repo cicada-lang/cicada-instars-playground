@@ -1,10 +1,11 @@
 const db = require("../../db")
 
-async function create() {
-  // TODO
-  // return await db.call_with_database("book", async (database) => {
-  //   return await database.collection("towns").find().toArray()
-  // })
+async function create(document) {
+  return await db.call_with_database("book", async (database) => {
+    const result = await database.collection("towns").insertOne(document)
+    console.log("[inserted]", result.insertedId)
+    return result.insertedId
+  })
 }
 
 module.exports = {
