@@ -11,6 +11,9 @@
       >
         <option v-for="lang in langs" v-bind:value="lang">{{ lang }}</option>
       </select>
+      <!-- <button class="playground-header-share" v-on:click="share">
+           {{ share_icon }}
+           </button> -->
     </div>
     <textarea class="playground-editor" v-model:value="input"> </textarea>
     <div v-if="output">
@@ -32,6 +35,7 @@
     input = Playground.Lang.welcome(this.lang)
     output = ""
     run_icon = "RUN >"
+    share_icon = "\\SHARE/"
 
     run(): void {
       this.output = Playground.Lang.runner(this.lang)(this.input)
@@ -45,6 +49,13 @@
           lang: event.target.value,
         },
       })
+    }
+
+    async share(): Promise<void> {
+      console.log("[share]")
+      const respond = await fetch("api/project")
+      const result = await respond.json()
+      console.log(result)
     }
   }
 </script>
