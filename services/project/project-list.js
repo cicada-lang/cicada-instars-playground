@@ -1,11 +1,7 @@
 const db = require("../../db")
 
-async function list() {
+module.exports.list = async () => {
   return await db.call_with_database("book", async (database) => {
     return await database.collection("towns").find().toArray()
   })
-}
-
-module.exports = {
-  list,
 }

@@ -6,15 +6,15 @@ const client = new MongoClient(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 })
 
-const call_with_database = async (dbname, cb) => {
+const call_with_database = async (db_name, cb) => {
   await client.connect()
   try {
-    const result = await cb(client.db(dbname))
-    console.error(`[call_with_database] ${dbname}`)
+    const result = await cb(client.db(db_name))
+    console.error(`[call_with_database] ${db_name}`)
     client.close()
     return result
   } catch (error) {
-    console.error(`[call_with_database] [fail] ${dbname}`)
+    console.error(`[call_with_database] [fail] ${db_name}`)
     console.error(error)
     client.close()
   }

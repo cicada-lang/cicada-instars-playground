@@ -11,9 +11,9 @@
       >
         <option v-for="lang in langs" v-bind:value="lang">{{ lang }}</option>
       </select>
-      <!-- <button class="playground-header-share" v-on:click="share">
-           {{ share_icon }}
-           </button> -->
+      <button class="playground-header-share" v-on:click="share">
+        {{ share_icon }}
+      </button>
     </div>
     <textarea class="playground-editor" v-model:value="input"> </textarea>
     <div v-if="output">
@@ -25,24 +25,41 @@
 </template>
 
 <script lang="ts">
-  import * as Playground from "../playground"
   import { Component, Vue } from "vue-property-decorator"
+  import * as Playground from "../playground"
+  import * as ut from "../../ut"
 
   @Component({ name: "Playground" })
   export default class extends Vue {
-    lang = Playground.Lang.init_lang(this.$route.query.lang)
     langs = Playground.Lang.langs
-    input = Playground.Lang.welcome(this.lang)
+    lang = Playground.Lang.init_lang(this.$route.query.lang)
+    input = ""
+    project_id =
+      typeof this.$route.query.project_id === "string"
+        ? this.$route.query.project_id
+        : undefined
     output = ""
     run_icon = "RUN >"
     share_icon = "\\SHARE/"
+
+    async created() {
+      if (this.project_id) {
+        const respond = await fetch(`api/project?project_id=${this.project_id}`)
+        const project = await respond.json()
+        this.lang = project.lang
+        this.input = project.main
+      } else {
+        this.input = Playground.Lang.init_input(this.lang)
+      }
+    }
 
     run(): void {
       this.output = Playground.Lang.runner(this.lang)(this.input)
     }
 
     select(event: any): void {
-      this.input = Playground.Lang.welcome(this.lang)
+      this.input = Playground.Lang.init_input(this.lang)
+      this.output = ""
       this.$router.replace({
         query: {
           ...this.$route.query,
@@ -53,9 +70,17 @@
 
     async share(): Promise<void> {
       console.log("[share]")
-      const respond = await fetch("api/project")
-      const result = await respond.json()
-      console.log(result)
+      const respond = await fetch("api/project", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lang: this.lang, main: this.input }),
+      })
+      const project_id = await respond.json()
+      const link = `${window.location.origin}?project_id=${project_id}`
+      this.output = ut.aline(`\
+      |You can share your project by this link:
+      |    <a href=${link}>${link}</a>
+      |`)
     }
   }
 </script>

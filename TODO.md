@@ -1,4 +1,5 @@
-- share button
+- load `db_name` and `collection_name` from config module
+  - use function to return config object
 - schema for the model of `api/project`
 - error handling in server and api code
 - second level drop down menu examples selection

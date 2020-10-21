@@ -24,6 +24,6 @@ export function runner(lang: Lang): (text: string) => string {
   }
 }
 
-export function welcome(lang: Lang): string {
+export function init_input(lang: Lang): string {
   return require(`@/examples/${lang}/welcome.cic`)
 }
