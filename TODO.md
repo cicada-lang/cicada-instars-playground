@@ -1,4 +1,3 @@
-- vercel serverless + free mongodb
 - share button
 - second level drop down menu examples selection
   - use predefined `examples`

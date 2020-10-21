@@ -1,0 +1,7 @@
+{
+  "name": "cicada-playground-api",
+  "version": 2,
+  "env": {
+    "MONGODB_URI": "@mongodb-cluster-0-uri"
+  }
+}
