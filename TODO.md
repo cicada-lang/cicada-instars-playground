@@ -1,5 +1,5 @@
 - share button
-- error handling in server and api code.
+- error handling in server and api code
 - second level drop down menu examples selection
   - use predefined `examples`
   - also update url

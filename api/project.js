@@ -1,4 +1,4 @@
-const Srvs = require("../server/services")
+const services = require("../services")
 
 module.exports = async (request, response) => {
   if (request.method === "GET") get(request, response)
@@ -7,7 +7,7 @@ module.exports = async (request, response) => {
 }
 
 const get = async (request, response) => {
-  response.json(await Srvs.Project.list())
+  response.json(await services.project.list())
 }
 
 const post = async (request, response) => {
