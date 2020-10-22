@@ -1,4 +1,3 @@
-- [web] use cicada's html output
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 - [web] use Ace or CodeMirror
