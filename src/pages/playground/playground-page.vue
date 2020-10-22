@@ -17,9 +17,8 @@
         {{ share_icon }}
       </button>
     </div>
-    <textarea class="playground-editor" v-model:value="input"></textarea>
+    <ace-editor :code="input" @change="input = $event" ref="editor" />
     <div v-if="output">
-      <hr />
       <pre class="playground-output" v-html="output"></pre>
     </div>
     <div class="playground-footer"></div>
@@ -30,8 +29,9 @@
   import { Component, Vue } from "vue-property-decorator"
   import * as Playground from "../playground"
   import * as ut from "../../ut"
+  import AceEditor from "./ace-editor.vue"
 
-  @Component({ name: "Playground" })
+  @Component({ name: "Playground", components: { AceEditor } })
   export default class extends Vue {
     langs = Playground.Lang.langs
     lang = Playground.Lang.init_lang(this.$route.query.lang)
@@ -60,7 +60,9 @@
     }
 
     select(event: any): void {
-      this.input = Playground.Lang.init_input(this.lang)
+      ;(this.$refs.editor as Vue & { overwrite(code: string): void }).overwrite(
+        Playground.Lang.init_input(this.lang)
+      )
       this.output = ""
       this.$router.replace({
         query: {
@@ -156,6 +158,7 @@
 
   .playground-output {
     padding: 2px;
+    margin-top: 10px;
     border: thin dashed;
     font-size: 1em;
     width: 100%;
