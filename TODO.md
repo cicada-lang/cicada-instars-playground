@@ -1,4 +1,6 @@
 - [web] use cicada's html output
+- [web] use Web Storage API to save project session
+  - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 - [server] schema for the model of `api/project`
 - [server] better log
 - [server] error handling in server and api code
