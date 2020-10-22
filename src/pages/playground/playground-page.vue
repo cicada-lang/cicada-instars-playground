@@ -17,7 +17,11 @@
         {{ share_icon }}
       </button>
     </div>
-    <textarea class="playground-editor" v-model:value="input"></textarea>
+    <textarea
+      class="playground-editor"
+      v-model:value="input"
+      spellcheck="false"
+    ></textarea>
     <div v-if="output">
       <hr />
       <pre class="playground-output" v-html="output"></pre>
