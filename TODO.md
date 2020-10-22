@@ -1,8 +1,4 @@
-- [web] second level drop down menu examples selection
-  - use predefined `examples`
-  - also update url
-  - use cicada's tests
+- [web] use cicada's html output
 - [server] schema for the model of `api/project`
 - [server] better log
 - [server] error handling in server and api code
-- [cicada] be able to output html
