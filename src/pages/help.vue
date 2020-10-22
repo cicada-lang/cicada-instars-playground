@@ -17,7 +17,7 @@
       Source code:
       <li>
         <a href="https://gitlab.com/xieyuheng/cicada-playground"
-          >cicada-playground</a
+          >Cicada Playground</a
         >
       </li>
     </ul>
