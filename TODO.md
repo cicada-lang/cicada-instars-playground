@@ -1,6 +1,10 @@
 - [web] use cicada's html output
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
+- [web] use Ace or CodeMirror
+  - Ace: https://ace.c9.io
+  - CodeMirror: https://codemirror.net
+  - be able to fallback to `textarea`
 - [server] schema for the model of `api/project`
 - [server] better log
 - [server] error handling in server and api code
