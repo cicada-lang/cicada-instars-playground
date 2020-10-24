@@ -6,9 +6,8 @@ export const langs = ["lang0", "lang1", "lang2", "lang3"]
 
 export const default_lang = "lang3" as const
 
-export function init_lang(lang: any): Lang {
-  if (typeof lang === "string" && langs.includes(lang)) return lang as Lang
-  else return default_lang
+export function init_input(lang: Lang): string {
+  return require(`@/examples/${lang}/welcome.cic`)
 }
 
 export function runner(lang: Lang): (text: string) => string {
@@ -22,8 +21,4 @@ export function runner(lang: Lang): (text: string) => string {
     case "lang3":
       return Playground.run_lang3
   }
-}
-
-export function init_input(lang: Lang): string {
-  return require(`@/examples/${lang}/welcome.cic`)
 }

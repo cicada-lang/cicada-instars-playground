@@ -12,7 +12,7 @@
       </button>
       <button class="playground-header-editor">
         EDITOR:
-        <select v-model="editor" @change="select">
+        <select v-model="editor" @change="select_editor">
           <option v-for="editor in editors" :value="editor">{{
             editor
           }}</option>
@@ -64,16 +64,27 @@
     },
   })
   export default class extends Vue {
-    langs = Playground.Lang.langs
-    lang = Playground.Lang.init_lang(this.$route.query.lang)
     input = ""
+    output = ""
+
     project_id =
       typeof this.$route.query.project_id === "string"
         ? this.$route.query.project_id
         : undefined
-    output = ""
+
+    langs = Playground.Lang.langs
+    lang =
+      typeof this.$route.query.lang === "string" &&
+      this.langs.includes(this.$route.query.lang)
+        ? (this.$route.query.lang as Playground.Lang.Lang)
+        : "lang3"
+
     editors = ["Ace", "Minimal"]
-    editor = "Ace"
+    editor =
+      typeof this.$route.query.editor === "string" &&
+      this.editors.includes(this.$route.query.editor)
+        ? this.$route.query.editor
+        : "Ace"
 
     async mounted() {
       if (this.project_id) {
@@ -98,6 +109,15 @@
         query: {
           ...this.$route.query,
           lang: event.target.value,
+        },
+      })
+    }
+
+    select_editor(event: HTMLElementEvent<HTMLSelectElement>): void {
+      this.$router.replace({
+        query: {
+          ...this.$route.query,
+          editor: event.target.value,
         },
       })
     }
