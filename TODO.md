@@ -1,4 +1,4 @@
-- [web] fix `AceEditor` cursor problem
+- [web] `AceEditor` sync `input` with `code`
 - [web] `SimpleEditor` as component
 - [web] be able to select `textarea` editor
 - [web] be able to select CodeMirror editor

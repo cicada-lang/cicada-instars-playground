@@ -43,7 +43,12 @@
     overwrite(code: string): void
   }
 
-  @Component({ name: "Playground", components: { AceEditor } })
+  @Component({
+    name: "Playground",
+    components: {
+      AceEditor,
+    },
+  })
   export default class extends Vue {
     langs = Playground.Lang.langs
     lang = Playground.Lang.init_lang(this.$route.query.lang)
@@ -56,14 +61,19 @@
     run_icon = "RUN >"
     share_icon = "\\SHARE/"
 
-    async created() {
+    async mounted() {
       if (this.project_id) {
+        const editor = this.$refs.editor as Editor
+        editor.overwrite(`// Loading project: ${this.project_id}`)
         const respond = await fetch(`api/project?project_id=${this.project_id}`)
         const project = await respond.json()
         this.lang = project.lang
         this.input = project.main
+        editor.overwrite(this.input)
       } else {
         this.input = Playground.Lang.init_input(this.lang)
+        const editor = this.$refs.editor as Editor
+        editor.overwrite(this.input)
       }
     }
 
@@ -153,15 +163,17 @@
     padding: 15px 0;
   }
 
-  .playground-editor {
-    height: 70vh;
-    padding: 2px;
-    border: thin solid;
-    font-size: 1em;
-    width: 100%;
-    overflow-x: auto;
-    overflow-wrap: normal;
-  }
+  /*
+     .playground-editor {
+     height: 70vh;
+     padding: 2px;
+     border: thin solid;
+     font-size: 1em;
+     width: 100%;
+     overflow-x: auto;
+     overflow-wrap: normal;
+     }
+   */
 
   hr {
     margin: 9px 0;

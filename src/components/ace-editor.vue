@@ -1,5 +1,5 @@
 <template>
-  <div ref="editor">{{ code }}</div>
+  <div id="editor">{{ code }}</div>
 </template>
 
 <script>
@@ -31,30 +31,28 @@
     },
 
     mounted() {
-      const editor = Ace.edit(this.$refs.editor)
-      editor.container.style.lineHeight = 1.5
-      editor.container.style.fontSize = "14px"
-      editor.renderer.updateFontSize()
-
+      this.editor = Ace.edit("editor")
       this.handler = () => {
-        this.$emit("change", editor.getValue())
+        this.$emit("change", this.editor.getValue())
       }
-      editor.on("change", this.handler)
-
-      this.editor = editor
+      this.editor.on("change", this.handler)
     },
 
     beforeDestroy() {
       this.editor.off("change", this.handler)
       this.editor.destroy()
+      this.editor.container.remove()
       this.editor = null
     },
   }
 </script>
 
 <style scoped>
-  div {
+  #editor {
+    font-family: "Sarasa Mono SC", "Noto Mono", "Monaco", monospace;
+    font-size: 1em;
+    line-height: 1.5;
     height: 70vh;
-    border: 4px solid #bbb;
+    border: 2px solid gray;
   }
 </style>

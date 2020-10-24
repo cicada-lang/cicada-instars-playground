@@ -15,6 +15,7 @@
   "dependencies": {
     "@xieyuheng/cicada": "0.0.16",
     "ace-builds": "^1.4.12",
+    "file-loader": "^6.1.1",
     "mongodb": "^3.6.2",
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.6",
