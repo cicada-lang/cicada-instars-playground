@@ -1,7 +1,4 @@
-- [web] `SimpleEditor` -- by `textarea`
-- [web] be able to select `SimpleEditor`
 - [web] `CodeMirrorEditor`
-- [web] be able to select `CodeMirrorEditor`
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 - [server] cache project by content hash

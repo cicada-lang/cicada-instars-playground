@@ -2,29 +2,46 @@
   <div class="playground">
     <div class="playground-header">
       <button class="playground-header-run" @click="run">
-        {{ run_icon }}
+        RUN &gt;
       </button>
-      <button class="playground-header-select">
-        <select v-model="lang" @change="select">
+      <button class="playground-header-lang">
+        LANG:
+        <select v-model="lang" @change="select_lang">
           <option v-for="lang in langs" :value="lang">{{ lang }}</option>
         </select>
       </button>
+      <button class="playground-header-editor">
+        EDITOR:
+        <select v-model="editor" @change="select">
+          <option v-for="editor in editors" :value="editor">{{
+            editor
+          }}</option>
+        </select>
+      </button>
       <!-- MIDDLE -->
-      <button class="playground-header-help">
+      <button class="playground-header-right playground-header-help">
         <router-link to="/help">HELP</router-link>
       </button>
-      <button class="playground-header-share" @click="share">
-        {{ share_icon }}
+      <button
+        class="playground-header-right playground-header-share"
+        @click="share"
+      >
+        \SHARE/
       </button>
     </div>
 
-    <!-- <textarea
-         class="playground-editor"
-         v-model:value="input"
-         spellcheck="false"
-         ></textarea> -->
+    <textarea
+      v-if="editor === 'Minimal'"
+      class="playground-editor"
+      v-model:value="input"
+      spellcheck="false"
+    ></textarea>
 
-    <ace-editor class="playground-editor" v-model:value="input" />
+    <ace-editor
+      v-if="editor === 'Ace'"
+      class="playground-editor"
+      v-model:value="input"
+    />
 
     <div v-if="output">
       <hr />
@@ -55,8 +72,8 @@
         ? this.$route.query.project_id
         : undefined
     output = ""
-    run_icon = "RUN >"
-    share_icon = "\\SHARE/"
+    editors = ["Ace", "Minimal"]
+    editor = "Ace"
 
     async mounted() {
       if (this.project_id) {
@@ -74,7 +91,7 @@
       this.output = Playground.Lang.runner(this.lang)(this.input)
     }
 
-    select(event: HTMLElementEvent<HTMLSelectElement>): void {
+    select_lang(event: HTMLElementEvent<HTMLSelectElement>): void {
       this.input = Playground.Lang.init_input(this.lang)
       this.output = ""
       this.$router.replace({
@@ -137,17 +154,23 @@
     background-color: #a8d8b9;
   }
 
+  .playground-header-right {
+    float: right;
+  }
+
   .playground-header-share {
     background-color: #fcfaf2;
-    float: right;
   }
 
   .playground-header-help {
     background-color: #fcfaf2;
-    float: right;
   }
 
-  .playground-header-select {
+  .playground-header-editor {
+    background-color: #fcfaf2;
+  }
+
+  .playground-header-lang {
     background-color: #fcfaf2;
   }
 
