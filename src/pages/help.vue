@@ -27,7 +27,8 @@
     <p>
       For info about the languages you can play with, <br />
       please visit
-      <a href="https://github.com/cicada-lang/cicada">Cicada Language</a>, <br />
+      <a href="https://github.com/cicada-lang/cicada">Cicada Language</a>,
+      <br />
       where you can find more code examples.
     </p>
 
