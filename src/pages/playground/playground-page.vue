@@ -73,7 +73,7 @@
       this.output = Playground.Lang.runner(this.lang)(this.input)
     }
 
-    select(event: any): void {
+    select(event: HTMLElementEvent<HTMLSelectElement>): void {
       this.input = Playground.Lang.init_input(this.lang)
       this.output = ""
       this.$router.replace({
@@ -86,9 +86,9 @@
 
     async share(): Promise<void> {
       this.output = ut.aline(`\
-      |You can share your project by this link:
-      |    // generating ...
-      |`)
+          |You can share your project by this link:
+          |    // generating ...
+          |`)
       const respond = await fetch("api/project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -97,9 +97,9 @@
       const project_id = await respond.json()
       const link = `${window.location.origin}?project_id=${project_id}`
       this.output = ut.aline(`\
-      |You can share your project by this link:
-      |    <a href=${link}>${link}</a>
-      |`)
+          |You can share your project by this link:
+          |    <a href=${link}>${link}</a>
+          |`)
     }
   }
 </script>

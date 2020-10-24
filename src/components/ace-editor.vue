@@ -8,7 +8,7 @@
   import "ace-builds/webpack-resolver"
 
   @Component({
-    name: "Playground",
+    name: "AceEditor",
   })
   export default class extends Vue {
     @Prop({ default: "" }) text!: string
@@ -25,15 +25,15 @@
     }
 
     @Watch("text")
-    on_text_change(text: string): void {
+    _update_editor_value(text: string): void {
       this.editor.setValue(text)
       this.editor.clearSelection()
     }
 
     beforeDestroy(): void {
+      this.editor.container.remove()
       this.editor.off("change", this.editor_change_handler)
       this.editor.destroy()
-      this.editor.container.remove()
     }
   }
 </script>
