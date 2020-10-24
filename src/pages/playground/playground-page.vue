@@ -37,7 +37,7 @@
   import { Component, Vue } from "vue-property-decorator"
   import * as Playground from "../playground"
   import * as ut from "../../ut"
-  import AceEditor from "./ace-editor.vue"
+  import AceEditor from "@/components/ace-editor.vue"
 
   @Component({ name: "Playground", components: { AceEditor } })
   export default class extends Vue {

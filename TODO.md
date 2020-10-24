@@ -1,9 +1,9 @@
+- [web] fix `AceEditor` cursor problem
+- [web] `SimpleEditor` as component
+- [web] be able to select `textarea` editor
+- [web] be able to select CodeMirror editor
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
-- [web] use Ace or CodeMirror
-  - Ace: https://ace.c9.io
-  - CodeMirror: https://codemirror.net
-  - be able to fallback to `textarea`
 - [server] schema for the model of `api/project`
 - [server] better log
 - [server] error handling in server and api code
