@@ -2,48 +2,40 @@
   <div id="editor">{{ text }}</div>
 </template>
 
-<script>
+<script lang="ts">
+  import { Vue, Component, Prop, Watch } from "vue-property-decorator"
   import Ace from "ace-builds"
   import "ace-builds/webpack-resolver"
 
-  export default {
-    props: {
-      text: {
-        type: String,
-        required: true,
-        default: "",
-      },
-    },
+  @Component({
+    name: "Playground",
+  })
+  export default class extends Vue {
+    @Prop({ default: "" }) text!: string
 
-    data() {
-      return {
-        /** @type {import("ace-builds").Ace.Editor} */
-        editor: null,
-        handler: null,
-      }
-    },
+    editor!: Ace.Ace.Editor
+    handler: any
 
-    watch: {
-      text: function(text) {
-        this.editor.setValue(text)
-        this.editor.clearSelection()
-      },
-    },
-
-    mounted() {
+    mounted(): void {
       this.editor = Ace.edit("editor")
       this.handler = () => {
         this.$emit("change", this.editor.getValue())
       }
       this.editor.on("change", this.handler)
-    },
+    }
 
-    beforeDestroy() {
+    @Watch("text")
+    on_text_change(text: string): void {
+      this.editor.setValue(text)
+      this.editor.clearSelection()
+    }
+
+    beforeDestroy(): void {
       this.editor.off("change", this.handler)
       this.editor.destroy()
       this.editor.container.remove()
-      this.editor = null
-    },
+      // this.editor = null
+    }
   }
 </script>
 

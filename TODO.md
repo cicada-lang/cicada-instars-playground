@@ -1,4 +1,3 @@
-- [web] `AceEditor` use ts
 - [web] `SimpleEditor` as component -- by `textarea`
 - [web] `Editor` as plugin
 - [web] be able to select `SimpleEditor`
