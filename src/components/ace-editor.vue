@@ -1,5 +1,5 @@
 <template>
-  <div id="editor">{{ code }}</div>
+  <div id="editor">{{ text }}</div>
 </template>
 
 <script>
@@ -8,7 +8,7 @@
 
   export default {
     props: {
-      code: {
+      text: {
         type: String,
         required: true,
         default: "",
@@ -23,9 +23,9 @@
       }
     },
 
-    methods: {
-      overwrite(code) {
-        this.editor.setValue(code)
+    watch: {
+      text: function(text) {
+        this.editor.setValue(text)
         this.editor.clearSelection()
       },
     },

@@ -24,7 +24,7 @@
          spellcheck="false"
          ></textarea> -->
 
-    <ace-editor :code="input" @change="input = $event" ref="editor" />
+    <ace-editor :text="input" @change="input = $event" ref="editor" />
 
     <div v-if="output">
       <pre class="playground-output" v-html="output"></pre>
@@ -38,10 +38,6 @@
   import * as Playground from "../playground"
   import AceEditor from "@/components/ace-editor.vue"
   import * as ut from "../../ut"
-
-  type Editor = Vue & {
-    overwrite(code: string): void
-  }
 
   @Component({
     name: "Playground",
@@ -63,17 +59,13 @@
 
     async mounted() {
       if (this.project_id) {
-        const editor = this.$refs.editor as Editor
-        editor.overwrite(`// Loading project: ${this.project_id}`)
+        this.input = `// Loading project: ${this.project_id}`
         const respond = await fetch(`api/project?project_id=${this.project_id}`)
         const project = await respond.json()
         this.lang = project.lang
         this.input = project.main
-        editor.overwrite(this.input)
       } else {
         this.input = Playground.Lang.init_input(this.lang)
-        const editor = this.$refs.editor as Editor
-        editor.overwrite(this.input)
       }
     }
 
@@ -82,8 +74,7 @@
     }
 
     select(event: any): void {
-      const editor = this.$refs.editor as Editor
-      editor.overwrite(Playground.Lang.init_input(this.lang))
+      this.input = Playground.Lang.init_input(this.lang)
       this.output = ""
       this.$router.replace({
         query: {

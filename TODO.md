@@ -1,4 +1,3 @@
-- [web] `AceEditor` sync `input` with `code`
 - [web] `AceEditor` use ts
 - [web] `SimpleEditor` as component -- by `textarea`
 - [web] `Editor` as plugin
