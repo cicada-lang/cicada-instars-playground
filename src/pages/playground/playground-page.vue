@@ -24,9 +24,10 @@
          spellcheck="false"
          ></textarea> -->
 
-    <ace-editor :text.sync="input" />
+    <ace-editor class="playground-editor" v-model:value="input" />
 
     <div v-if="output">
+      <hr />
       <pre class="playground-output" v-html="output"></pre>
     </div>
     <div class="playground-footer"></div>
@@ -154,17 +155,16 @@
     padding: 15px 0;
   }
 
-  /*
-     .playground-editor {
-     height: 70vh;
-     padding: 2px;
-     border: thin solid;
-     font-size: 1em;
-     width: 100%;
-     overflow-x: auto;
-     overflow-wrap: normal;
-     }
-   */
+  .playground-editor {
+    height: 70vh;
+    padding: 2px;
+    border: thin solid;
+    line-height: 1.5;
+    font-size: 1em;
+    width: 100%;
+    overflow-x: auto;
+    overflow-wrap: normal;
+  }
 
   hr {
     margin: 9px 0;
@@ -172,7 +172,6 @@
 
   .playground-output {
     padding: 2px;
-    margin-top: 10px;
     border: thin dashed;
     font-size: 1em;
     width: 100%;
