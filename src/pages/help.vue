@@ -16,7 +16,7 @@
     <ul>
       Source code:
       <li>
-        <a href="https://gitlab.com/xieyuheng/cicada-playground"
+        <a href="https://github.com/cicada-lang/cicada-playground"
           >Cicada Playground</a
         >
       </li>
@@ -27,7 +27,7 @@
     <p>
       For info about the languages you can play with, <br />
       please visit
-      <a href="https://gitlab.com/xieyuheng/cicada">Cicada Language</a>, <br />
+      <a href="https://github.com/cicada-lang/cicada">Cicada Language</a>, <br />
       where you can find more code examples.
     </p>
 
