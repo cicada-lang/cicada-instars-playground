@@ -26,8 +26,10 @@
 
     @Watch("text")
     _update_editor_value(text: string): void {
+      const position = this.editor.getCursorPosition()
       this.editor.setValue(text)
       this.editor.clearSelection()
+      this.editor.moveCursorToPosition(position)
     }
 
     beforeDestroy(): void {
