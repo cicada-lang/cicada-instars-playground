@@ -1,3 +1,4 @@
+- [web] [refactor] group `lang` `editor` `input` to `project`
 - [web] `CodeMirrorEditor`
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
