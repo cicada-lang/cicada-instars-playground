@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import ace from "ace-builds"
+  import Ace from "ace-builds"
   import "ace-builds/webpack-resolver"
 
   export default {
@@ -14,6 +14,7 @@
         default: "",
       },
     },
+
     data() {
       return {
         /** @type {import("ace-builds").Ace.Editor} */
@@ -21,14 +22,16 @@
         handler: null,
       }
     },
+
     methods: {
       overwrite(code) {
         this.editor.setValue(code)
         this.editor.clearSelection()
       },
     },
+
     mounted() {
-      const editor = ace.edit(this.$refs.editor)
+      const editor = Ace.edit(this.$refs.editor)
       editor.container.style.lineHeight = 1.5
       editor.container.style.fontSize = "14px"
       editor.renderer.updateFontSize()
@@ -40,6 +43,7 @@
 
       this.editor = editor
     },
+
     beforeDestroy() {
       this.editor.off("change", this.handler)
       this.editor.destroy()

@@ -1,19 +1,19 @@
 <template>
   <div class="playground">
     <div class="playground-header">
-      <button class="playground-header-run" v-on:click="run">
+      <button class="playground-header-run" @click="run">
         {{ run_icon }}
       </button>
       <button class="playground-header-select">
-        <select v-model="lang" v-on:change="select">
-          <option v-for="lang in langs" v-bind:value="lang">{{ lang }}</option>
+        <select v-model="lang" @change="select">
+          <option v-for="lang in langs" :value="lang">{{ lang }}</option>
         </select>
       </button>
       <!-- MIDDLE -->
       <button class="playground-header-help">
         <router-link to="/help">HELP</router-link>
       </button>
-      <button class="playground-header-share" v-on:click="share">
+      <button class="playground-header-share" @click="share">
         {{ share_icon }}
       </button>
     </div>
@@ -36,8 +36,12 @@
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator"
   import * as Playground from "../playground"
-  import * as ut from "../../ut"
   import AceEditor from "@/components/ace-editor.vue"
+  import * as ut from "../../ut"
+
+  type Editor = Vue & {
+    overwrite(code: string): void
+  }
 
   @Component({ name: "Playground", components: { AceEditor } })
   export default class extends Vue {
@@ -68,9 +72,8 @@
     }
 
     select(event: any): void {
-      ;(this.$refs.editor as Vue & { overwrite(code: string): void }).overwrite(
-        Playground.Lang.init_input(this.lang)
-      )
+      const editor = this.$refs.editor as Editor
+      editor.overwrite(Playground.Lang.init_input(this.lang))
       this.output = ""
       this.$router.replace({
         query: {
