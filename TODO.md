@@ -1,4 +1,3 @@
-- [docs] improve README
 - [web] `AceEditor` sync `input` with `code`
 - [web] `AceEditor` use ts
 - [web] `SimpleEditor` as component -- by `textarea`
