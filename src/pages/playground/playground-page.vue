@@ -24,7 +24,7 @@
          spellcheck="false"
          ></textarea> -->
 
-    <ace-editor :text="input" @change="input = $event" ref="editor" />
+    <ace-editor :text.sync="input" />
 
     <div v-if="output">
       <pre class="playground-output" v-html="output"></pre>

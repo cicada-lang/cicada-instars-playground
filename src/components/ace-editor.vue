@@ -19,7 +19,7 @@
     mounted(): void {
       this.editor = Ace.edit("editor")
       this.editor_change_handler = () => {
-        this.$emit("change", this.editor.getValue())
+        this.$emit("update:text", this.editor.getValue())
       }
       this.editor.on("change", this.editor_change_handler)
     }

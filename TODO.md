@@ -4,6 +4,7 @@
 - [web] be able to select `CodeMirrorEditor`
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
+- [server] cache project by content hash
 - [server] schema for the model of `api/project`
 - [server] better log
 - [server] error handling in server and api code
