@@ -1,7 +1,10 @@
+- [docs] improve README
 - [web] `AceEditor` sync `input` with `code`
-- [web] `SimpleEditor` as component
-- [web] be able to select `textarea` editor
-- [web] be able to select CodeMirror editor
+- [web] `AceEditor` use ts
+- [web] `SimpleEditor` as component -- by `textarea`
+- [web] `Editor` as plugin
+- [web] be able to select `SimpleEditor`
+- [web] be able to select `CodeMirrorEditor`
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 - [server] schema for the model of `api/project`
