@@ -14,14 +14,14 @@
     @Prop({ default: "" }) text!: string
 
     editor!: Ace.Ace.Editor
-    handler: any
+    editor_change_handler!: () => void
 
     mounted(): void {
       this.editor = Ace.edit("editor")
-      this.handler = () => {
+      this.editor_change_handler = () => {
         this.$emit("change", this.editor.getValue())
       }
-      this.editor.on("change", this.handler)
+      this.editor.on("change", this.editor_change_handler)
     }
 
     @Watch("text")
@@ -31,10 +31,9 @@
     }
 
     beforeDestroy(): void {
-      this.editor.off("change", this.handler)
+      this.editor.off("change", this.editor_change_handler)
       this.editor.destroy()
       this.editor.container.remove()
-      // this.editor = null
     }
   }
 </script>
