@@ -1,4 +1,3 @@
-- [web] [refactor] extrat fetch from view
 - [web] [refactor] playground page css -- need to learn about good css style
 - [web] `CodeMirrorEditor`
 - [web] use Web Storage API to save project session

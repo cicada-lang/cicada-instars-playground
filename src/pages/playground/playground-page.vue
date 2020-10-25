@@ -125,20 +125,15 @@
           |You can share your project by this link:
           |    // generating ...
           |`)
-      const respond = await fetch("api/project", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(project),
-      })
-      const result = await respond.json()
-      const link = `${window.location.origin}?project_id=${result}`
+
+      const project_id = await Playground.create_project(project)
+      const link = `${window.location.origin}?project_id=${project_id}`
       this.project.output = ut.aline(`\
           |You can share your project by this link:
           |    <a href=${link}>${link}</a>
           |`)
     }
   }
-
 
   function update_project_by_query(project: Project.Project, query: any): void {
     if (typeof query.lang === "string" && supported_langs.includes(query.lang))
@@ -161,12 +156,7 @@
   ): Promise<void> {
     if (project_id) {
       project.input = `// Loading project: ${project_id}`
-      const respond = await fetch(`api/project?project_id=${project_id}`)
-      const result = await respond.json()
-      project.lang = result.lang
-      project.editor = result.editor
-      project.input = result.input
-      project.output = result.output
+      Object.assign(project, await Playground.get_project(project_id))
     }
   }
 </script>

@@ -1,3 +1,5 @@
 export { default as Page } from "./playground-page.vue"
 export * as Lang from "./playground-lang"
 export * from "./playground-run"
+export * from "./playground-get-project"
+export * from "./playground-create-project"
