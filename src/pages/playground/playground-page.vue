@@ -62,17 +62,6 @@
   const supported_langs = ["lang0", "lang1", "lang2", "lang3"]
   const supported_editors = ["Ace", "Minimal"]
 
-  function update_project_by_query(project: Project.Project, query: any): void {
-    if (typeof query.lang === "string" && supported_langs.includes(query.lang))
-      project.lang = query.lang
-
-    if (
-      typeof query.editor === "string" &&
-      supported_editors.includes(query.editor)
-    )
-      project.editor = query.editor
-  }
-
   @Component({
     name: "Playground",
     components: {
@@ -80,27 +69,25 @@
     },
   })
   export default class extends Vue {
-    langs = supported_langs
-    editors = supported_editors
-    project = {
+    langs: Array<string> = supported_langs
+    editors: Array<string> = supported_editors
+    project: Project.Project = {
       input: "",
       output: "",
       lang: "lang3",
       editor: "Ace",
     }
 
-    project_id =
-      typeof this.$route.query.project_id === "string"
-        ? this.$route.query.project_id
-        : undefined
+    project_id: string | undefined = undefined
 
-    async mounted() {
+    async mounted(): Promise<void> {
       update_project_by_query(this.project, this.$route.query)
+      this.project_id = project_id_from_query(this.$route.query)
       if (this.project_id) {
-        this.project.input = `// Loading project: ${this.project_id}`
-        const respond = await fetch(`api/project?project_id=${this.project_id}`)
-        const project = await respond.json()
-        this.project = Project.build(project)
+        await update_project_by_project_id(
+          this.project,
+          project_id_from_query(this.$route.query)
+        )
       } else {
         this.project.input = Playground.Lang.init_input(this.project.lang)
       }
@@ -152,6 +139,38 @@
           |`)
     }
   }
+
+
+  function update_project_by_query(project: Project.Project, query: any): void {
+    if (typeof query.lang === "string" && supported_langs.includes(query.lang))
+      project.lang = query.lang
+
+    if (
+      typeof query.editor === "string" &&
+      supported_editors.includes(query.editor)
+    )
+      project.editor = query.editor
+  }
+
+  function project_id_from_query(query: any): undefined | string {
+    return typeof query.project_id === "string" ? query.project_id : undefined
+  }
+
+  async function update_project_by_project_id(
+    project: Project.Project,
+    project_id: undefined | string
+  ): Promise<void> {
+    if (project_id) {
+      project.input = `// Loading project: ${project_id}`
+      const respond = await fetch(`api/project?project_id=${project_id}`)
+      const result = await respond.json()
+      project.lang = result.lang
+      project.editor = result.editor
+      project.input = result.input
+      project.output = result.output
+    }
+  }
+
 </script>
 
 <style scoped>

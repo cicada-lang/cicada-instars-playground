@@ -1,6 +1,5 @@
 - [db] delete outdata data
 - [web] [refactor] `share`
-- [web] [refactor] `project.id` instead of `project_id`
 - [web] [refactor] playground page css -- need to learn about good css style
 - [web] `CodeMirrorEditor`
 - [web] use Web Storage API to save project session
