@@ -14,7 +14,7 @@
     @Prop({ default: "" }) value!: string
 
     editor!: Ace.Ace.Editor
-     editor_change_handler!: () => void
+    editor_change_handler!: () => void
 
     mounted(): void {
       this.editor = Ace.edit("editor")

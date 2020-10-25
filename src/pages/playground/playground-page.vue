@@ -1,9 +1,7 @@
 <template>
   <div class="playground">
     <div class="playground-header">
-      <button class="playground-header-run" @click="run">
-        RUN &gt;
-      </button>
+      <button class="playground-header-run" @click="run">RUN &gt;</button>
       <button>
         LANG:
         <select v-model="project.lang" @change="select_lang">
@@ -13,18 +11,16 @@
       <button>
         EDITOR:
         <select v-model="project.editor" @change="select_editor">
-          <option v-for="editor in editors" :value="editor">{{
-            editor
-          }}</option>
+          <option v-for="editor in editors" :value="editor">
+            {{ editor }}
+          </option>
         </select>
       </button>
       <!-- MIDDLE -->
       <button class="playground-header-right">
         <router-link to="/help">HELP</router-link>
       </button>
-      <button class="playground-header-right" @click="share">
-        \SHARE/
-      </button>
+      <button class="playground-header-right" @click="share">\SHARE/</button>
       <button class="playground-header-right" @click="save">
         <span v-if="modified">+SAVE+</span>
         <span v-else>-SAVE-</span>
