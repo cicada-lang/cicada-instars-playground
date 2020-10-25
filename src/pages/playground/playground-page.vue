@@ -121,7 +121,6 @@
 
     async share(): Promise<void> {
       const project = { ...this.project }
-      console.log(project)
       this.project.output = ut.aline(`\
           |You can share your project by this link:
           |    // generating ...
@@ -131,8 +130,8 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(project),
       })
-      const project_id = await respond.json()
-      const link = `${window.location.origin}?project_id=${project_id}`
+      const result = await respond.json()
+      const link = `${window.location.origin}?project_id=${result}`
       this.project.output = ut.aline(`\
           |You can share your project by this link:
           |    <a href=${link}>${link}</a>
@@ -170,7 +169,6 @@
       project.output = result.output
     }
   }
-
 </script>
 
 <style scoped>
