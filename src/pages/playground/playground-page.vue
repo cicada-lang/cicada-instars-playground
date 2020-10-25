@@ -40,6 +40,11 @@
       v-model:value="project.input"
     />
 
+    <div v-if="message">
+      <hr />
+      <pre class="playground-message" v-html="message"></pre>
+    </div>
+
     <div v-if="project.output">
       <hr />
       <pre class="playground-output" v-html="project.output"></pre>
@@ -72,6 +77,7 @@
       editor: "Ace",
     }
     modified: boolean = false
+    message: string = ""
 
     async mounted(): Promise<void> {
       await Playground.init_project(this.project, this.$route.query)
@@ -105,14 +111,13 @@
     }
 
     async share(): Promise<void> {
-      const project = { ...this.project }
-      this.project.output = ut.aline(`\
+      this.message = ut.aline(`\
           |You can share your project by this link:
           |    // generating ...
           |`)
-      const project_id = await Playground.create_project(project)
+      const project_id = await Playground.create_project(this.project)
       const link = `${window.location.origin}?project_id=${project_id}`
-      this.project.output = ut.aline(`\
+      this.message = ut.aline(`\
           |You can share your project by this link:
           |    <a href=${link}>${link}</a>
           |`)
@@ -121,6 +126,7 @@
     @Watch("project", { deep: true })
     _update_modified_state(): void {
       this.modified = true
+      this.message = ""
     }
 
     save(): void {
@@ -175,6 +181,16 @@
 
   hr {
     margin: 9px 0;
+  }
+
+  .playground-message {
+    padding: 2px;
+    border: thin dashed;
+    font-size: 1em;
+    width: 100%;
+    overflow-x: auto;
+    background-color: #eeeeee;
+    overflow-wrap: normal;
   }
 
   .playground-output {
