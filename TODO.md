@@ -1,4 +1,4 @@
-- [server] cache project by content hash
+- [web] use message buffer to do messaging -- instead of using output
 - [web] [refactor] playground page css -- need to learn about good css style
 - [server] schema for the model of `api/project`
 - [server] better log
