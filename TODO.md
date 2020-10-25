@@ -1,7 +1,8 @@
-- [web] [refactor] playground page css -- need to learn about good css style
 - [web] use Web Storage API to save project session
   - https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 - [server] cache project by content hash
+- [web] learn more about Ace
+- [web] [refactor] playground page css -- need to learn about good css style
 - [server] schema for the model of `api/project`
 - [server] better log
 - [server] error handling in server and api code
