@@ -1,5 +1,6 @@
 <template>
   <div class="playground">
+
     <div class="playground-header">
       <button class="playground-header-run" @click="run">
         RUN &gt;
@@ -49,6 +50,7 @@
     </div>
 
     <div class="playground-footer"></div>
+
   </div>
 </template>
 
@@ -58,6 +60,7 @@
   import * as Project from "@/models/project"
   import AceEditor from "@/components/ace-editor.vue"
   import * as ut from "../../ut"
+  import * as CodeMirror from "codemirror"
 
   @Component({
     name: "Playground",
@@ -111,7 +114,6 @@
           |You can share your project by this link:
           |    // generating ...
           |`)
-
       const project_id = await Playground.create_project(project)
       const link = `${window.location.origin}?project_id=${project_id}`
       this.project.output = ut.aline(`\
