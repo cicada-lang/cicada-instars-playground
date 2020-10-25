@@ -1,17 +1,16 @@
 <template>
   <div class="playground">
-
     <div class="playground-header">
       <button class="playground-header-run" @click="run">
         RUN &gt;
       </button>
-      <button class="playground-header-lang">
+      <button>
         LANG:
         <select v-model="project.lang" @change="select_lang">
           <option v-for="lang in langs" :value="lang">{{ lang }}</option>
         </select>
       </button>
-      <button class="playground-header-editor">
+      <button>
         EDITOR:
         <select v-model="project.editor" @change="select_editor">
           <option v-for="editor in editors" :value="editor">{{
@@ -20,14 +19,15 @@
         </select>
       </button>
       <!-- MIDDLE -->
-      <button class="playground-header-right playground-header-help">
+      <button class="playground-header-right">
         <router-link to="/help">HELP</router-link>
       </button>
-      <button
-        class="playground-header-right playground-header-share"
-        @click="share"
-      >
+      <button class="playground-header-right" @click="share">
         \SHARE/
+      </button>
+      <button class="playground-header-right" @click="save">
+        <span v-if="modified">+SAVE+</span>
+        <span v-else>-SAVE-</span>
       </button>
     </div>
 
@@ -50,12 +50,11 @@
     </div>
 
     <div class="playground-footer"></div>
-
   </div>
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from "vue-property-decorator"
+  import { Component, Vue, Watch } from "vue-property-decorator"
   import * as Playground from "../playground"
   import * as Project from "@/models/project"
   import AceEditor from "@/components/ace-editor.vue"
@@ -76,15 +75,17 @@
       lang: "lang3",
       editor: "Ace",
     }
+    modified: boolean = false
 
     async mounted(): Promise<void> {
-      await Playground.initialize_project(this.project, this.$route.query)
+      await Playground.init_project(this.project, this.$route.query)
     }
 
     run(): void {
       this.project.output = Playground.Lang.runner(this.project.lang)(
         this.project.input
       )
+      this.save()
     }
 
     select_lang(event: HTMLElementEvent<HTMLSelectElement>): void {
@@ -120,6 +121,16 @@
           |    <a href=${link}>${link}</a>
           |`)
     }
+
+    @Watch("project", { deep: true })
+    _update_modified_state(): void {
+      this.modified = true
+    }
+
+    save(): void {
+      Object.assign(localStorage, Project.build(this.project))
+      this.modified = false
+    }
   }
 </script>
 
@@ -132,18 +143,14 @@
     padding: 15px 0;
   }
 
-  .playground-status {
-    color: gray;
-  }
-
-  .playground-header-bar {
-    margin: 4px;
-    color: gray;
+  .playground-footer {
+    padding: 15px 0;
   }
 
   .playground-header button {
     padding: 4px 7px;
     border: thin solid;
+    background-color: #fcfaf2;
   }
 
   .playground-header select {
@@ -151,32 +158,12 @@
     border: none;
   }
 
-  .playground-header-run {
+  .playground-header .playground-header-run {
     background-color: #a8d8b9;
   }
 
   .playground-header-right {
     float: right;
-  }
-
-  .playground-header-share {
-    background-color: #fcfaf2;
-  }
-
-  .playground-header-help {
-    background-color: #fcfaf2;
-  }
-
-  .playground-header-editor {
-    background-color: #fcfaf2;
-  }
-
-  .playground-header-lang {
-    background-color: #fcfaf2;
-  }
-
-  .playground-footer {
-    padding: 15px 0;
   }
 
   .playground-editor {
