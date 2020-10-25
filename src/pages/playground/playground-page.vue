@@ -60,7 +60,6 @@
   import * as Project from "@/models/project"
   import AceEditor from "@/components/ace-editor.vue"
   import * as ut from "../../ut"
-  import * as CodeMirror from "codemirror"
 
   @Component({
     name: "Playground",
