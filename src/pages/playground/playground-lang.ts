@@ -1,6 +1,8 @@
 import * as Playground from "../playground"
 
-export function init_input(lang: string): string {
+export const supported_langs = ["lang0", "lang1", "lang2", "lang3"]
+
+export function welcome(lang: string): string {
   return require(`@/examples/${lang}/welcome.cic`)
 }
 

@@ -59,9 +59,6 @@
   import AceEditor from "@/components/ace-editor.vue"
   import * as ut from "../../ut"
 
-  const supported_langs = ["lang0", "lang1", "lang2", "lang3"]
-  const supported_editors = ["Ace", "Minimal"]
-
   @Component({
     name: "Playground",
     components: {
@@ -69,8 +66,8 @@
     },
   })
   export default class extends Vue {
-    langs: Array<string> = supported_langs
-    editors: Array<string> = supported_editors
+    langs: Array<string> = Playground.Lang.supported_langs
+    editors: Array<string> = Playground.Editor.supported_editors
     project: Project.Project = {
       input: "",
       output: "",
@@ -78,19 +75,8 @@
       editor: "Ace",
     }
 
-    project_id: string | undefined = undefined
-
     async mounted(): Promise<void> {
-      update_project_by_query(this.project, this.$route.query)
-      this.project_id = project_id_from_query(this.$route.query)
-      if (this.project_id) {
-        await update_project_by_project_id(
-          this.project,
-          project_id_from_query(this.$route.query)
-        )
-      } else {
-        this.project.input = Playground.Lang.init_input(this.project.lang)
-      }
+      await Playground.initialize_project(this.project, this.$route.query)
     }
 
     run(): void {
@@ -100,7 +86,7 @@
     }
 
     select_lang(event: HTMLElementEvent<HTMLSelectElement>): void {
-      this.project.input = Playground.Lang.init_input(this.project.lang)
+      this.project.input = Playground.Lang.welcome(this.project.lang)
       this.project.output = ""
       this.$router.replace({
         query: {
@@ -132,31 +118,6 @@
           |You can share your project by this link:
           |    <a href=${link}>${link}</a>
           |`)
-    }
-  }
-
-  function update_project_by_query(project: Project.Project, query: any): void {
-    if (typeof query.lang === "string" && supported_langs.includes(query.lang))
-      project.lang = query.lang
-
-    if (
-      typeof query.editor === "string" &&
-      supported_editors.includes(query.editor)
-    )
-      project.editor = query.editor
-  }
-
-  function project_id_from_query(query: any): undefined | string {
-    return typeof query.project_id === "string" ? query.project_id : undefined
-  }
-
-  async function update_project_by_project_id(
-    project: Project.Project,
-    project_id: undefined | string
-  ): Promise<void> {
-    if (project_id) {
-      project.input = `// Loading project: ${project_id}`
-      Object.assign(project, await Playground.get_project(project_id))
     }
   }
 </script>
