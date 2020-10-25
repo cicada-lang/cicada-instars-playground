@@ -6,13 +6,13 @@
       </button>
       <button class="playground-header-lang">
         LANG:
-        <select v-model="lang" @change="select_lang">
+        <select v-model="project.lang" @change="select_lang">
           <option v-for="lang in langs" :value="lang">{{ lang }}</option>
         </select>
       </button>
       <button class="playground-header-editor">
         EDITOR:
-        <select v-model="editor" @change="select_editor">
+        <select v-model="project.editor" @change="select_editor">
           <option v-for="editor in editors" :value="editor">{{
             editor
           }}</option>
@@ -31,22 +31,23 @@
     </div>
 
     <textarea
-      v-if="editor === 'Minimal'"
+      v-if="project.editor === 'Minimal'"
       class="playground-editor"
-      v-model:value="input"
+      v-model:value="project.input"
       spellcheck="false"
     ></textarea>
 
     <ace-editor
-      v-if="editor === 'Ace'"
+      v-if="project.editor === 'Ace'"
       class="playground-editor"
-      v-model:value="input"
+      v-model:value="project.input"
     />
 
-    <div v-if="output">
+    <div v-if="project.output">
       <hr />
-      <pre class="playground-output" v-html="output"></pre>
+      <pre class="playground-output" v-html="project.output"></pre>
     </div>
+
     <div class="playground-footer"></div>
   </div>
 </template>
@@ -54,8 +55,23 @@
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator"
   import * as Playground from "../playground"
+  import * as Project from "@/models/project"
   import AceEditor from "@/components/ace-editor.vue"
   import * as ut from "../../ut"
+
+  const supported_langs = ["lang0", "lang1", "lang2", "lang3"]
+  const supported_editors = ["Ace", "Minimal"]
+
+  function update_project_by_query(project: Project.Project, query: any): void {
+    if (typeof query.lang === "string" && supported_langs.includes(query.lang))
+      project.lang = query.lang
+
+    if (
+      typeof query.editor === "string" &&
+      supported_editors.includes(query.editor)
+    )
+      project.editor = query.editor
+  }
 
   @Component({
     name: "Playground",
@@ -64,47 +80,41 @@
     },
   })
   export default class extends Vue {
-    input = ""
-    output = ""
+    langs = supported_langs
+    editors = supported_editors
+    project = {
+      input: "",
+      output: "",
+      lang: "lang3",
+      editor: "Ace",
+    }
 
     project_id =
       typeof this.$route.query.project_id === "string"
         ? this.$route.query.project_id
         : undefined
 
-    langs = Playground.Lang.langs
-    lang =
-      typeof this.$route.query.lang === "string" &&
-      this.langs.includes(this.$route.query.lang)
-        ? (this.$route.query.lang as Playground.Lang.Lang)
-        : "lang3"
-
-    editors = ["Ace", "Minimal"]
-    editor =
-      typeof this.$route.query.editor === "string" &&
-      this.editors.includes(this.$route.query.editor)
-        ? this.$route.query.editor
-        : "Ace"
-
     async mounted() {
+      update_project_by_query(this.project, this.$route.query)
       if (this.project_id) {
-        this.input = `// Loading project: ${this.project_id}`
+        this.project.input = `// Loading project: ${this.project_id}`
         const respond = await fetch(`api/project?project_id=${this.project_id}`)
         const project = await respond.json()
-        this.lang = project.lang
-        this.input = project.main
+        this.project = Project.build(project)
       } else {
-        this.input = Playground.Lang.init_input(this.lang)
+        this.project.input = Playground.Lang.init_input(this.project.lang)
       }
     }
 
     run(): void {
-      this.output = Playground.Lang.runner(this.lang)(this.input)
+      this.project.output = Playground.Lang.runner(this.project.lang)(
+        this.project.input
+      )
     }
 
     select_lang(event: HTMLElementEvent<HTMLSelectElement>): void {
-      this.input = Playground.Lang.init_input(this.lang)
-      this.output = ""
+      this.project.input = Playground.Lang.init_input(this.project.lang)
+      this.project.output = ""
       this.$router.replace({
         query: {
           ...this.$route.query,
@@ -123,18 +133,20 @@
     }
 
     async share(): Promise<void> {
-      this.output = ut.aline(`\
+      const project = { ...this.project }
+      console.log(project)
+      this.project.output = ut.aline(`\
           |You can share your project by this link:
           |    // generating ...
           |`)
       const respond = await fetch("api/project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lang: this.lang, main: this.input }),
+        body: JSON.stringify(project),
       })
       const project_id = await respond.json()
       const link = `${window.location.origin}?project_id=${project_id}`
-      this.output = ut.aline(`\
+      this.project.output = ut.aline(`\
           |You can share your project by this link:
           |    <a href=${link}>${link}</a>
           |`)

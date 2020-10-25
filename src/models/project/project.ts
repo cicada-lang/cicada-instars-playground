@@ -1,4 +1,6 @@
 export interface Project {
   lang: string
-  main: string
+  editor: string
+  input: string
+  output: string
 }
