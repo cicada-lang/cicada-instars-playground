@@ -41,12 +41,12 @@
     />
 
     <div v-if="message">
-      <hr />
+      <separator label="MESSAGE" />
       <pre class="playground-message" v-html="message"></pre>
     </div>
 
     <div v-if="project.output">
-      <hr />
+      <separator label="OUTPUT" />
       <pre class="playground-output" v-html="project.output"></pre>
     </div>
 
@@ -59,12 +59,14 @@
   import * as Playground from "../playground"
   import * as Project from "@/models/project"
   import AceEditor from "@/components/ace-editor.vue"
+  import Separator from "@/components/separator.vue"
   import * as ut from "../../ut"
 
   @Component({
     name: "Playground",
     components: {
       AceEditor,
+      Separator,
     },
   })
   export default class extends Vue {
@@ -179,17 +181,13 @@
     overflow-wrap: normal;
   }
 
-  hr {
-    margin: 9px 0;
-  }
-
   .playground-message {
     padding: 2px;
     border: thin dashed;
     font-size: 1em;
     width: 100%;
     overflow-x: auto;
-    background-color: #eeeeee;
+    background-color: #fcfaf2;
     overflow-wrap: normal;
   }
 
@@ -199,6 +197,7 @@
     font-size: 1em;
     width: 100%;
     overflow-x: auto;
+    background-color: #fcfaf2;
     overflow-wrap: normal;
   }
 </style>
