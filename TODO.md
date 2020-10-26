@@ -1,4 +1,6 @@
+- [server] use vercel's "path segments"
 - [web] [refactor] playground page css -- need to learn about good css style
 - [server] schema for the model of `api/project`
 - [server] better log
-- [server] error handling in server and api code
+  - pino: https://github.com/pinojs/pino
+- [server] error handling in server and api

@@ -1,4 +1,4 @@
-const services = require("../services")
+const services = require("../server/services")
 
 module.exports = async (request, response) => {
   if (request.method === "GET") get(request, response)
