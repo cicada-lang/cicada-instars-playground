@@ -1,4 +1,5 @@
 const config = require("../../config")
+const logger = require("../../logger")
 const db = require("../../db")
 
 async function create(document) {
@@ -7,13 +8,19 @@ async function create(document) {
       .collection(config.collection_name)
       .findOne(document)
     if (found) {
-      console.log("[create] old", found._id)
+      logger.info({
+        msg: "[services.project.create] found old document",
+        project_id: found._id,
+      })
       return found._id
     } else {
       const result = await database
         .collection(config.collection_name)
         .insertOne(document)
-      console.log("[create] new", result.insertedId)
+      logger.info({
+        msg: "[services.project.create] create new document",
+        project_id: found._id,
+      })
       return result.insertedId
     }
   })
