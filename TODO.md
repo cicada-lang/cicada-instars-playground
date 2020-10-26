@@ -1,4 +1,3 @@
-- [server] handle mongo `_id` error
 - [server] schema for the model of `api/project`
 - [server] error handling in server and api
 - [web] [refactor] playground page css -- need to learn about good css style

@@ -46,6 +46,9 @@ async function update_project_by_project_id(
   project: Project.Project,
   project_id: string
 ): Promise<void> {
-  project.input = `// Loading project: ${project_id}`
-  Object.assign(project, await Playground.get_project(project_id))
+  const new_project = await Playground.get_project(project_id)
+  if (new_project) {
+    project.input = `// Loading project: ${project_id}`
+    Object.assign(project, new_project)
+  }
 }
