@@ -7,11 +7,7 @@ module.exports = async (request, response) => {
 }
 
 const get = async (request, response) => {
-  if (request.query.project_id) {
-    response.json(await services.project.get(request.query.project_id))
-  } else {
-    response.json(await services.project.list())
-  }
+  response.json(await services.project.list())
 }
 
 const post = async (request, response) => {

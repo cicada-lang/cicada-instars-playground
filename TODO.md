@@ -1,4 +1,4 @@
-- [server] use vercel's "path segments"
+- [web] use vue-router's "path segments"
 - [web] [refactor] playground page css -- need to learn about good css style
 - [server] schema for the model of `api/project`
 - [server] better log
