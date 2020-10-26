@@ -19,7 +19,7 @@ async function create(document) {
         .insertOne(document)
       logger.info({
         msg: "[services.project.create] create new document",
-        project_id: found._id,
+        project_id: result.insertedId,
       })
       return result.insertedId
     }
