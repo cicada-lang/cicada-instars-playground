@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "format": "prettier src api db services --write"
+    "format": "prettier src api server --write"
   },
   "prettier": {
     "semi": false,
@@ -22,7 +22,7 @@
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.0.2",
-    "vue-router": "^3.4.7"
+    "vue-router": "^3.4.8"
   },
   "devDependencies": {
     "@types/assert": "^1.5.2",

@@ -77,7 +77,10 @@
     message: string = ""
 
     async mounted(): Promise<void> {
-      await Playground.init_project(this.project, this.$route.query)
+      await Playground.init_project(this.project, {
+        query: this.$route.query,
+        params: this.$route.params,
+      })
     }
 
     run(): void {
@@ -112,7 +115,7 @@
           |    // generating ...
           |`)
       const project_id = await Playground.create_project(this.project)
-      const link = `${window.location.origin}?project_id=${project_id}`
+      const link = `${window.location.origin}/${project_id}`
       this.message = ut.aline(`\
           |You can share your project by this link:
           |    <a href=${link}>${link}</a>

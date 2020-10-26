@@ -3,13 +3,13 @@ import * as Project from "@/models/project"
 
 export async function init_project(
   project: Project.Project,
-  query: any
+  opts: { query: any; params: any }
 ): Promise<void> {
   update_project_by_default_project(project)
   update_project_by_local_storage(project, localStorage)
-  update_project_by_query(project, query)
-  const project_id = project_id_from_query(query)
-  if (project_id) await update_project_by_project_id(project, project_id)
+  update_project_by_query(project, opts.query)
+  if (opts.params.project_id)
+    await update_project_by_project_id(project, opts.params.project_id)
 }
 
 function update_project_by_default_project(project: Project.Project): void {
@@ -48,8 +48,4 @@ async function update_project_by_project_id(
 ): Promise<void> {
   project.input = `// Loading project: ${project_id}`
   Object.assign(project, await Playground.get_project(project_id))
-}
-
-function project_id_from_query(query: any): undefined | string {
-  return typeof query.project_id === "string" ? query.project_id : undefined
 }

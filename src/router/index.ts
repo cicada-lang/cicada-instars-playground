@@ -6,14 +6,9 @@ import Help from "../pages/help.vue"
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
-  {
-    path: "/",
-    component: Playground.Page,
-  },
-  {
-    path: "/help",
-    component: Help,
-  },
+  { path: "/", component: Playground.Page },
+  { path: "/:project_id", component: Playground.Page },
+  { path: "/help", component: Help },
 ]
 
 const router = new VueRouter({
