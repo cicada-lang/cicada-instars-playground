@@ -21,10 +21,6 @@
         <router-link to="/help">HELP</router-link>
       </button>
       <button class="playground-header-right" @click="share">\SHARE/</button>
-      <button class="playground-header-right" @click="save">
-        <span v-if="modified">+SAVE+</span>
-        <span v-else>-SAVE-</span>
-      </button>
     </div>
 
     <textarea
@@ -78,7 +74,6 @@
       lang: "lang3",
       editor: "Ace",
     }
-    modified: boolean = false
     message: string = ""
 
     async mounted(): Promise<void> {
@@ -89,7 +84,6 @@
       this.project.output = Playground.Lang.runner(this.project.lang)(
         this.project.input
       )
-      this.save()
     }
 
     select_lang(event: HTMLElementEvent<HTMLSelectElement>): void {
@@ -126,14 +120,9 @@
     }
 
     @Watch("project", { deep: true })
-    _update_modified_state(): void {
-      this.modified = true
-      this.message = ""
-    }
-
-    save(): void {
+    _update_project(): void {
       Object.assign(localStorage, Project.build(this.project))
-      this.modified = false
+      this.message = ""
     }
   }
 </script>

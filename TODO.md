@@ -1,4 +1,5 @@
 - [web] use vue-router's "path segments"
+- [server] handle mongo `_id` error
 - [web] [refactor] playground page css -- need to learn about good css style
 - [server] schema for the model of `api/project`
 - [server] better log
