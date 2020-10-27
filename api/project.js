@@ -1,9 +1,14 @@
 const services = require("../server/services")
 
 module.exports = async (request, response) => {
-  if (request.method === "GET") get(request, response)
-  else if (request.method === "POST") post(request, response)
-  else throw new Error("TODO")
+  switch (request.method) {
+    case "GET":
+      return get(request, response)
+    case "POST":
+      return post(request, response)
+    default:
+      throw new Error("TODO")
+  }
 }
 
 const get = async (request, response) => {
