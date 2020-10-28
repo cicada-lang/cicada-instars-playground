@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "format": "prettier web api server --write"
+    "serve": "npx vue-cli-service serve",
+    "build": "npx vue-cli-service build",
+    "format": "npx prettier web api server --write"
   },
   "prettier": {
     "semi": false,
