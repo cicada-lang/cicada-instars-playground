@@ -4,11 +4,11 @@ const router = require("../server/router")
 
 module.exports = router({
   routes: {
-    GET: async (request, response) => {
-      response.json(await services.project.list())
+    GET: async (req, res) => {
+      res.json(await services.project.list())
     },
-    POST: async (request, response) => {
-      response.json(await services.project.create(request.body))
+    POST: async (req, res) => {
+      res.json(await services.project.create(req.body))
     },
   },
 })

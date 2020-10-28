@@ -1,8 +1,8 @@
 function router({ routes }) {
-  return async (request, response) => {
-    const route = routes[request.method]
-    if (route) await route(request, response)
-    else response.status(405).send()
+  return async (req, res) => {
+    const route = routes[req.method]
+    if (route) await route(req, res)
+    else res.status(405).send()
   }
 }
 

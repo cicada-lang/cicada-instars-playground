@@ -4,8 +4,8 @@ const router = require("../../server/router")
 
 module.exports = router({
   routes: {
-    GET: async (request, response) => {
-      response.json(await services.project.get(request.query.project_id))
+    GET: async (req, res) => {
+      res.json(await services.project.get(req.query.project_id))
     },
   },
 })

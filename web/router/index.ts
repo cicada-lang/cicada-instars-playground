@@ -4,7 +4,6 @@ import * as Playground from "../pages/playground"
 import Help from "../pages/help.vue"
 import PageNotFound from "../pages/page-not-found.vue"
 
-
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
