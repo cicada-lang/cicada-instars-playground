@@ -14,7 +14,7 @@
 
 <style scoped>
   hr {
-    margin: 0.5em 0;
+    padding: 0.5em 0;
   }
 
   .separator {
@@ -31,10 +31,10 @@
   }
 
   .separator::before {
-    margin-right: 0.3em;
+    padding-right: 0.3em;
   }
 
   .separator::after {
-    margin-left: 0.3em;
+    padding-left: 0.3em;
   }
 </style>
