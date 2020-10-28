@@ -8,8 +8,8 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   { path: "/", component: Playground.Page },
-  { path: "/:project_id", component: Playground.Page },
   { path: "/help", component: Help },
+  { path: "/:project_id", component: Playground.Page },
   { path: "*", component: PageNotFound },
 ]
 
