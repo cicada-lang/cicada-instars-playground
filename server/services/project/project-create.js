@@ -2,27 +2,28 @@ const config = require("../../config")
 const logger = require("../../logger")
 const db = require("../../db")
 
-async function create(document) {
+async function create(data) {
   return await db.call_with_database(config.db_name, async (database) => {
     const found = await database
       .collection(config.collection_name)
-      .findOne(document)
+      .findOne(data)
+
     if (found) {
       logger.info({
-        msg: "[services.project.create] found old document",
+        msg: "[services.project.create] found old data",
         project_id: found._id,
       })
       return found._id
-    } else {
-      const result = await database
-        .collection(config.collection_name)
-        .insertOne(document)
-      logger.info({
-        msg: "[services.project.create] create new document",
-        project_id: result.insertedId,
-      })
-      return result.insertedId
     }
+
+    const result = await database
+      .collection(config.collection_name)
+      .insertOne(data)
+    logger.info({
+      msg: "[services.project.create] create new data",
+      project_id: result.insertedId,
+    })
+    return result.insertedId
   })
 }
 

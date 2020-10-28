@@ -6,7 +6,10 @@ export async function create_project(
 ): Promise<string> {
   const respond = await fetch("api/project", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
     body: JSON.stringify(Project.build(project)),
   })
   return await respond.json()
