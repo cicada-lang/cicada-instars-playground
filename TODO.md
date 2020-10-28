@@ -1,3 +1,3 @@
-- [server] mongodb schema for the model of `api/project`
 - [server] error handling in api
 - [web] [refactor] playground page css -- need to learn about good css style
+- [server] mongodb schema for the model of `api/project`

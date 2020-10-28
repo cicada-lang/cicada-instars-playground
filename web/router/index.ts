@@ -2,7 +2,7 @@ import Vue from "vue"
 import VueRouter, { RouteConfig } from "vue-router"
 import * as Playground from "../pages/playground"
 import Help from "../pages/help.vue"
-import PageNotFound from "../pages/404.vue"
+import PageNotFound from "../pages/page-not-found.vue"
 
 
 Vue.use(VueRouter)

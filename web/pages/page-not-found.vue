@@ -1,8 +1,8 @@
 <template>
   <div class="page-not-found">
     <div class="page-not-found-header"></div>
-    <h2>404</h2>
-    <p>Page Not Found</p>
+    <h2>Page Not Found</h2>
+    <router-link to="/">Go back to home</router-link>.
     <div class="page-not-found-footer"></div>
   </div>
 </template>
