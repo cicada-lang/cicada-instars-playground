@@ -13,16 +13,21 @@ async function create(data) {
         msg: "[services.project.create] found old data",
         project_id: found._id,
       })
+    }
+
+    if (found) {
       return found._id
     }
 
     const result = await database
       .collection(config.collection_name)
       .insertOne(data)
+
     logger.info({
       msg: "[services.project.create] create new data",
       project_id: result.insertedId,
     })
+
     return result.insertedId
   })
 }
