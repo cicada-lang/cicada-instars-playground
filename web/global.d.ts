@@ -1,5 +1,5 @@
 type HTMLElementEvent<T extends HTMLElement> = Event & {
   target: T
-  // NOTE probably also `currentTarget`
-  // currentTarget: T;
+  // NOTE maybe also `currentTarget`
+  // currentTarget: T
 }
