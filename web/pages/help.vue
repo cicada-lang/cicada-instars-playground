@@ -1,28 +1,26 @@
 <template>
   <div class="help">
-    <div class="help-header"></div>
-
     <h1>The Cicada Playground</h1>
 
-    <h2>About</h2>
+    <h2 class="help__headline">About</h2>
 
     <ul>
       Authors:
-      <li>
+      <li class="help__list-entry">
         <a href="https://inner-universe.now.sh">Xie Yuheng</a>
       </li>
     </ul>
 
     <ul>
       Source code:
-      <li>
+      <li class="help__list-entry">
         <a href="https://github.com/cicada-lang/cicada-playground"
           >Cicada Playground</a
         >
       </li>
     </ul>
 
-    <h2>Contents</h2>
+    <h2 class="help__headline">Contents</h2>
 
     <p>
       For info about the languages you can play with, <br />
@@ -32,15 +30,13 @@
       where you can find more code examples.
     </p>
 
-    <h2>Disclaimer</h2>
+    <h2 class="help__headline">Disclaimer</h2>
 
     <p>
       This Web app is under active design and development, <br />
       data stored on the server should be considered temporary, <br />
       thus not be relyed upon.
     </p>
-
-    <div class="help-footer"></div>
   </div>
 </template>
 
@@ -56,11 +52,11 @@
     padding: 15px 17px;
   }
 
-  h2 {
+  .help__headline {
     margin-top: 7px;
   }
 
-  li {
+  .help__list-entry {
     margin-left: 2em;
   }
 </style>

@@ -1,6 +1,8 @@
 <template>
-  <div v-if="label" class="separator">{{ label }}</div>
-  <hr v-else />
+  <div class="separator">
+    <div class="separator--with-label" v-if="label">{{ label }}</div>
+    <div class="separator--without-label" v-else><hr /></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,28 +15,28 @@
 </script>
 
 <style scoped>
-  hr {
+  .separator--without-label {
     padding: 0.5em 0;
   }
 
-  .separator {
+  .separator--with-label {
     display: flex;
     align-items: center;
     text-align: center;
   }
 
-  .separator::before,
-  .separator::after {
+  .separator--with-label::before,
+  .separator--with-label::after {
     content: "";
     flex: 1;
     border-bottom: 1px solid #333333;
   }
 
-  .separator::before {
+  .separator--with-label::before {
     padding-right: 0.3em;
   }
 
-  .separator::after {
+  .separator--with-label::after {
     padding-left: 0.3em;
   }
 </style>

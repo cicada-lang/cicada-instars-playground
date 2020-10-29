@@ -1,52 +1,67 @@
 <template>
   <div class="playground">
-    <div class="playground-header">
-      <button class="playground-header-run" @click="run">RUN &gt;</button>
-      <button>
+    <div class="playground__header">
+      <button class="playground__button playground__button--run" @click="run">
+        RUN &gt;
+      </button>
+      <button class="playground__button">
         LANG:
-        <select v-model="project.lang" @change="select_lang">
+        <select
+          class="playground__select"
+          v-model="project.lang"
+          @change="select_lang"
+        >
           <option v-for="lang in langs" :value="lang">{{ lang }}</option>
         </select>
       </button>
-      <button>
+      <button class="playground__button">
         EDITOR:
-        <select v-model="project.editor" @change="select_editor">
+        <select
+          class="playground__select"
+          v-model="project.editor"
+          @change="select_editor"
+        >
           <option v-for="editor in editors" :value="editor">
             {{ editor }}
           </option>
         </select>
       </button>
       <!-- MIDDLE -->
-      <button class="playground-header-right">
+      <button class="playground__button playground__button--right">
         <router-link to="/help">HELP</router-link>
       </button>
-      <button class="playground-header-right" @click="share">\SHARE/</button>
+      <button
+        class="playground__button playground__button--right"
+        @click="share"
+      >
+        \SHARE/
+      </button>
     </div>
 
     <textarea
       v-if="project.editor === 'Minimal'"
-      class="playground-editor"
+      class="playground__editor"
       v-model:value="project.input"
       spellcheck="false"
     ></textarea>
 
     <ace-editor
       v-if="project.editor === 'Ace'"
-      class="playground-editor"
+      class="playground__editor"
       v-model:value="project.input"
     />
 
     <div v-if="message">
       <separator label="MESSAGE" />
-      <pre class="playground-message" v-html="message"></pre>
+      <pre class="playground__message" v-html="message"></pre>
     </div>
 
     <div v-if="project.output">
       <separator label="OUTPUT" />
-      <pre class="playground-output" v-html="project.output"></pre>
+      <pre class="playground__output" v-html="project.output"></pre>
     </div>
 
-    <div class="playground-footer"></div>
+    <div class="playground__footer"></div>
   </div>
 </template>
 
@@ -135,34 +150,34 @@
     padding: 0 16px;
   }
 
-  .playground-header {
+  .playground__header {
     padding: 15px 0;
   }
 
-  .playground-footer {
+  .playground__footer {
     padding: 15px 0;
   }
 
-  .playground-header button {
+  .playground__button {
     padding: 4px 7px;
     border: thin solid;
     background-color: #fcfaf2;
   }
 
-  .playground-header select {
+  .playground__button--run {
+    background-color: #a8d8b9;
+  }
+
+  .playground__button--right {
+    float: right;
+  }
+
+  .playground__select {
     background-color: #fcfaf2;
     border: none;
   }
 
-  .playground-header .playground-header-run {
-    background-color: #a8d8b9;
-  }
-
-  .playground-header-right {
-    float: right;
-  }
-
-  .playground-editor {
+  .playground__editor {
     height: 70vh;
     padding: 2px;
     border: thin solid;
@@ -173,7 +188,7 @@
     overflow-wrap: normal;
   }
 
-  .playground-message {
+  .playground__message {
     padding: 2px;
     border: thin dashed;
     font-size: 1em;
@@ -183,7 +198,7 @@
     overflow-wrap: normal;
   }
 
-  .playground-output {
+  .playground__output {
     padding: 2px;
     border: thin dashed;
     font-size: 1em;

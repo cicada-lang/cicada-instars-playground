@@ -1,5 +1,5 @@
 <template>
-  <div id="editor">{{ value }}</div>
+  <div class="ace-editor" id="editor">{{ value }}</div>
 </template>
 
 <script lang="ts">
@@ -41,7 +41,7 @@
 </script>
 
 <style scoped>
-  #editor {
+  .ace-editor {
     font-family: "Sarasa Mono SC", "Noto Mono", "Monaco", monospace;
   }
 </style>

@@ -2,4 +2,3 @@
 - [server] `services.project.create` -- schema validation
 - [server] `services.project.get` -- schema validation
 - [web] `Project.build` -- schema validation
-- [web] [refactor] playground page css -- need to learn about good css style
