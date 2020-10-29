@@ -1,8 +1,6 @@
 <template>
-  <div class="separator">
-    <div class="separator--with-label" v-if="label">{{ label }}</div>
-    <div class="separator--without-label" v-else><hr /></div>
-  </div>
+  <div class="separator separator--with-label" v-if="label">{{ label }}</div>
+  <div class="separator separator--without-label" v-else><hr /></div>
 </template>
 
 <script lang="ts">
@@ -15,6 +13,9 @@
 </script>
 
 <style scoped>
+  .separator {
+  }
+
   .separator--without-label {
     padding: 0.5em 0;
   }
