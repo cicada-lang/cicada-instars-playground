@@ -2,7 +2,7 @@ import { pt, lang3, Trace } from "@cicada-lang/cicada"
 
 export function run_lang3(text: string): string {
   try {
-    const tops = lang3.frontend.parse_tops(text)
+    const tops = lang3.Syntax.parse_tops(text)
     const mod = lang3.Mod.init()
     return lang3.Top.run(mod, tops)
   } catch (error) {

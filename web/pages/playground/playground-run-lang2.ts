@@ -2,7 +2,7 @@ import { pt, lang2, Trace } from "@cicada-lang/cicada"
 
 export function run_lang2(text: string): string {
   try {
-    const stmts = lang2.frontend.parse_stmts(text)
+    const stmts = lang2.Syntax.parse_stmts(text)
     const ctx = lang2.Ctx.init()
     const env = lang2.Env.init()
     return lang2.Stmt.run(ctx, env, stmts)
