@@ -8,10 +8,12 @@ module.exports.list = async () => {
       .collection(config.collection_name)
       .find()
       .toArray()
+
     logger.info({
       msg: "[services.project.list]",
       length: list.length,
     })
+
     return list
   })
 }

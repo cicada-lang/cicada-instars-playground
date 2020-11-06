@@ -9,11 +9,13 @@ async function get(project_id) {
       const project = await database
         .collection(config.collection_name)
         .findOne({ _id: new ObjectID(project_id) })
+
       logger.info({
         msg: "[services.project.get]",
         project_id,
         found_p: Boolean(project),
       })
+
       return project
     } else {
       logger.info({
@@ -21,6 +23,7 @@ async function get(project_id) {
         project_id,
         found_p: false,
       })
+
       return null
     }
   })
