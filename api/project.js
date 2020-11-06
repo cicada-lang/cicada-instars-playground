@@ -1,4 +1,5 @@
 const services = require("../server/services")
+const logger = require("../server/logger")
 const router = require("../server/router")
 
 module.exports = router({
