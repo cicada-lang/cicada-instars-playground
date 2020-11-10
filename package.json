@@ -13,7 +13,7 @@
     "vueIndentScriptAndStyle": true
   },
   "dependencies": {
-    "@cicada-lang/cicada": "^0.0.19",
+    "@cicada-lang/cicada": "^0.0.20",
     "@exodus/schemasafe": "^1.0.0-rc.3",
     "ace-builds": "^1.4.12",
     "fast-deep-equal": "^3.1.3",
