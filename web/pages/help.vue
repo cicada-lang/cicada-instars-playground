@@ -14,7 +14,7 @@
     <ul>
       Source code:
       <li class="help__list-entry">
-        <a href="https://github.com/cicada-lang/cicada-playground"
+        <a href="https://github.com/cicada-lang/cicada-instars-playground"
           >Cicada Playground</a
         >
       </li>
