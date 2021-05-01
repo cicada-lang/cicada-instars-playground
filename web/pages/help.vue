@@ -1,6 +1,6 @@
 <template>
   <div class="help">
-    <h1>The Cicada Playground</h1>
+    <h1>The Cicada Instars Playground</h1>
 
     <h2 class="help__headline">About</h2>
 
@@ -25,7 +25,7 @@
     <p>
       For info about the languages you can play with, <br />
       please visit
-      <a href="https://github.com/cicada-lang/cicada">Cicada Language</a>,
+      <a href="https://github.com/cicada-lang/cicada-instars">Cicada Instars</a>,
       <br />
       where you can find more code examples.
     </p>

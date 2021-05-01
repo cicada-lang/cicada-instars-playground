@@ -1,6 +1,6 @@
-# Cicada Playground
+# Cicada Instars Playground
 
-Playground for Cicada Language.
+Playground for Cicada Instars.
 
 ## Community
 
