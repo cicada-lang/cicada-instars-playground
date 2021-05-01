@@ -1,4 +1,4 @@
-import { pt, lang0, Trace } from "@cicada-lang/cicada"
+import { pt, lang0, Trace } from "@cicada-lang/cicada-instars"
 
 export function run_lang0(text: string): string {
   try {
